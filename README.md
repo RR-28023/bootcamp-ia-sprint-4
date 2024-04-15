@@ -8,7 +8,7 @@
   - [Notas importantes (!!)](#notas-importantes-)
   - [Instrucciones para crear el entorno y ejecutar el experimento base](#instrucciones-para-crear-el-entorno-y-ejecutar-el-experimento-base)
     - [Instalar conda (y Python)](#instalar-conda-y-python)
-    - [Clona el repositorio y crea un entorno conda para este repositorio](#clona-el-repositorio-y-crea-un-entorno-conda-para-este-repositorio)
+    - [Crea un fork del repositorio y crea un entorno conda para este repositorio](#crea-un-fork-del-repositorio-y-crea-un-entorno-conda-para-este-repositorio)
     - [Actualiza variables de entorno con tus credenciales](#actualiza-variables-de-entorno-con-tus-credenciales)
     - [Descarga el dataset de evaluación](#descarga-el-dataset-de-evaluación)
     - [Lanzar el servidor de MLFlow](#lanzar-el-servidor-de-mlflow)
@@ -145,14 +145,20 @@ los pasos según tu sistema operativo [indicados en este link](https://docs.anac
 
 Además esto instalará Python en tu equipo si no lo tienes.
 
-### Clona el repositorio y crea un entorno conda para este repositorio
+### Crea un fork del repositorio y crea un entorno conda para este repositorio
 
 Cierra la terminal y abre otra (esto es importante para que tengan efecto los cambios tras instalar `conda`).
 
-Clona el repositorio en tu equipo:
+Crea un fork del repositorio en tu equipo (si no sabes hacerlo, instrucciones [aquí](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)). 
+
+Si ya tenías un fork del repositorio (como se pedía en el ejercicio de la semana pasada), tienes que hacer un `git pull` para tener la última versión del código. Hay varias formas de hacerlo, una de ellas es:
 
 ```bash
-path/en/tu/equipo$ git clone https://github.com/RR-28023/bootcamp-ia-sprint-4.git
+path/en/tu/equipo/bootcamp-ia-sprint-4$ 
+git remote add upstream https://github.com/RR-28023/bootcamp-ia-sprint-4.git
+git fetch upstream
+git checkout main
+git pull upstream main
 ```
 
 Cambia a la carpeta donde has clonado este repositorio y ejecuta:
