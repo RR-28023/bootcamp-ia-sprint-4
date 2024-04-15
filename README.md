@@ -186,7 +186,7 @@ En una terminal en el directorio donde está el repositorio, ejecuta:
  path/en/tu/equipo/bootcamp-ia-sprint-4$  mlflow server --host 127.0.0.1 --port 8080
 ```
 
-Ahora ya puedes ver en tu navegador el dashboard de mlflow (en `http://localhost:8080/`)
+Ahora ya puedes ver en tu navegador el "dashboard" de mlflow (en `http://localhost:8080/`)
 
 ### Lanza el experimento configurado por defecto
 
