@@ -158,9 +158,8 @@ Cambia a la carpeta donde has clonado este repositorio y ejecuta:
 
 ```bash
 path/en/tu/equipo/bootcamp-ia-sprint-4$ 
-conda create --name movies python=3.11
-conda activate movies
 conda env create -f environment.yml
+conda activate movies
 ```
 
 ### Actualiza variables de entorno con tus credenciales
