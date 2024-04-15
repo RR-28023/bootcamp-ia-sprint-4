@@ -1,5 +1,21 @@
 # Ejercicio práctico sesión 2 - Desarrollo del módulo de *retrieval* de un sistema RAG
 
+- [Ejercicio práctico sesión 2 - Desarrollo del módulo de *retrieval* de un sistema RAG](#ejercicio-práctico-sesión-2---desarrollo-del-módulo-de-retrieval-de-un-sistema-rag)
+  - [Introducción](#introducción)
+  - [Datos](#datos)
+  - [Evaluación del sistema](#evaluación-del-sistema)
+  - [Ejercicio](#ejercicio)
+  - [Notas importantes (!!)](#notas-importantes-)
+  - [Instrucciones para crear el entorno y ejecutar el experimento base](#instrucciones-para-crear-el-entorno-y-ejecutar-el-experimento-base)
+    - [Instalar conda (y Python)](#instalar-conda-y-python)
+    - [Clona el repositorio y crea un entorno conda para este repositorio](#clona-el-repositorio-y-crea-un-entorno-conda-para-este-repositorio)
+    - [Actualiza variables de entorno con tus credenciales](#actualiza-variables-de-entorno-con-tus-credenciales)
+    - [Lanzar el servidor de MLFlow](#lanzar-el-servidor-de-mlflow)
+    - [Lanza el experimento configurado por defecto](#lanza-el-experimento-configurado-por-defecto)
+
+
+## Introducción
+
 Imaginemos que estamos desarrollando un *chatbot* para recomendar películas que, entre otras funciones, tiene
 un módulo de *retrieval* que se encarga de buscar las películas que más se ajusten a una descripción dada. 
 
@@ -85,6 +101,8 @@ Los **entregables** son:
     <img src="docs/mlflow_3_experiments.png" alt="alt text" width="700">
 </p>
 
+(nota: en la imagen que subáis no hay que ocultar el valor de ningún parámetro. En la imagen de arriba se oculta para no
+influir en el enfoque del alumno)
 
 
 * Una Pull Request al repositorio con el código que permita replicar dichos experimentos
@@ -92,43 +110,88 @@ Los **entregables** son:
 
 ## Notas importantes (!!)
 
-* Para realizar el ejercicio y jugar con los parámetros mencionados arriba, no es necesario que el alumno modifique nada 
-del código a excepción de la configuración en `retrieval/config.py` y posibles nuevas funciones 
-en `retrieval/indexing_pipeline_utils.py` y `retrieval/retrieval_pipeline_utils.py`. Si una vez realizado los tres 
-experimentos como pide el enunciado, el alumno quiere cambiar / añadir cualquier parte del código para ver si consigue 
-mejorar más la métrica o cualquier otra mejora, es más que bienvenido.
+* Para realizar el ejercicio y jugar con los parámetros mencionados arriba, los únicos scripts que el alumno tiene
+que modificar, son:
+  * `retrieval/config.py` para actualizar con los parámetros/funciones que quiera probar
+  * `retrieval/indexing_pipeline_utils.py` para definir funciones alternativas que convierte un objeto `Movie` en un 
+  texto para generar embeddings
+  * `retrieval/retrieval_pipeline_utils.py` para definir funciones alternativas que procesan la query de entrada
 
-* Los embeddings tardan tiempo en generarse si no se dispone de una GPU, especialmente si se usan modelos más grandes
-que el que viene por defecto. Por eso, se ha incluido una funcionalidad de "cache" que comprueba si ya se ha generado
-un índice con embeddings con la misma configuración y, si es así, lo carga del cache en lugar de volver a generarlo. Para 
-que este "cache" funcione correctamente, si se desea hacer cambios en la función que pasamos como `_text_to_embed_fn` 
-(p.ej. en `get_synopsys_txt`) no vale con hacer cambios dentro de esa función, si no que hay que darle un nuevo nombre a 
-la función (nota: este caché es un "hack" para este ejercicio, en realidad se usan métodos más robustos como
-los [data pipelines de DVC](https://dvc.org/doc/start/data-pipelines/data-pipelines)).
+  Si una vez realizado los tres experimentos como pide el enunciado, el alumno quiere modificar otras partes del código
+  para ver si consigue mejorar más la métrica o cualquier otra mejora, es más que bienvenido.
 
+* Dependiendo del modelo que se use, es normal que los embeddings tarden bastante tiempo en generarse si no disponemos
+de una GPU (p.ej. veasé el experimento de la primera fila en la imagen de arriba, donde se ve que se 
+tardaron 57 minutos en generar). Por eso se ha incluido una funcionalidad de "cache" que guarda localmente los embeddings
+que generamos asociados a la configuración del experimento. Para que este "cache" funcione correctamente, si deseamos
+modificar la función que pasamos como `_text_to_embed_fn`, hay que darle un nuevo nombre a la función, ya que si no
+el programa pensará que estamos usando el mismo método y cargará los embeddings del caché en lugar de generar unos nuevos
+(Nota: este caché es un "hack" para este ejercicio, en un entorno profesional se deben usar métodos más 
+robustos como los [data pipelines de DVC](https://dvc.org/doc/start/data-pipelines/data-pipelines), que monitorizan si hay
+cambios en el código que genera el cache).
 
-## Instrucciones para crear el entorno y ejecutar el código
+* Además de tener acceso a una GPU localmente, otras opciones para acelerar el proceso de generación de embeddings podrían ser:
+  * Generarlos en un Google Colab usando la GPU que ofrecen de forma gratuita y luego almacenarlos en el cache con el nombre adecuado
+  * Utilizar técnicas de paralelización (e.g. el módulo `multiprocessing`) que van más allá de el contenido de este curso, pero
+    que si el alumno maneja o quiere aprender, puede ser una buena opción para acelerar el proceso.
 
-## Instalar conda (y Python)
+## Instrucciones para crear el entorno y ejecutar el experimento base
+
+### Instalar conda (y Python)
 
 Si no tienes `conda` instalado, instala `miniconda` (una distribución de conda) siguiendo
 los pasos según tu sistema operativo [indicados en este link](https://docs.anaconda.com/free/miniconda/). 
 
 Además esto instalará Python en tu equipo si no lo tienes.
 
-## Crear un entorno conda para este repositorio
+### Clona el repositorio y crea un entorno conda para este repositorio
 
 Cierra la terminal y abre otra (esto es importante para que tengan efecto los cambios tras instalar `conda`).
-Dirígete a la carpeta donde clonaste este repositorio y ejecuta:
+
+Clona el repositorio en tu equipo:
 
 ```bash
-path/en/tu/equipo/bootcamp-ia-sprint-4$ conda create --name movies python=3.11
+path/en/tu/equipo$ git clone https://github.com/RR-28023/bootcamp-ia-sprint-4.git
+```
+
+Cambia a la carpeta donde has clonado este repositorio y ejecuta:
+
+```bash
+path/en/tu/equipo/bootcamp-ia-sprint-4$ 
+conda create --name movies python=3.11
 conda activate movies
 conda env create -f environment.yml
 ```
 
-### MLruns
+### Actualiza variables de entorno con tus credenciales
 
- ```
- mlflow server --host 127.0.0.1 --port 8080
- ```
+Crea un archivo `.env` con el siguiente contenido (sustituyendo donde corresponda):
+
+```
+RDS_HOST=qualentum-movies.cacl8vunaq4c.eu-west-3.rds.amazonaws.com
+RDS_USER=<añade aquí tu usuario>
+RDS_PW=<añade tu contraseña>
+PYTHONPATH=path/en/tu/equipo/bootcamp-ia-sprint-4
+```
+
+### Lanzar el servidor de MLFlow
+
+En una terminal en el directorio donde está el repositorio, ejecuta:
+
+```bash
+ path/en/tu/equipo/bootcamp-ia-sprint-4$  mlflow server --host 127.0.0.1 --port 8080
+```
+
+Ahora ya puedes ver en tu navegador el dashboard de mlflow (en `http://localhost:8080/`)
+
+### Lanza el experimento configurado por defecto
+
+En una terminal en el directorio donde está el repositorio, ejecuta:
+
+```bash
+path/en/tu/equipo/bootcamp-ia-sprint-4$ 
+conda activate movies
+python retrieval/main.py
+```
+
+
