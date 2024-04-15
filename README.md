@@ -10,6 +10,7 @@
     - [Instalar conda (y Python)](#instalar-conda-y-python)
     - [Clona el repositorio y crea un entorno conda para este repositorio](#clona-el-repositorio-y-crea-un-entorno-conda-para-este-repositorio)
     - [Actualiza variables de entorno con tus credenciales](#actualiza-variables-de-entorno-con-tus-credenciales)
+    - [Descarga el dataset de evaluación](#descarga-el-dataset-de-evaluación)
     - [Lanzar el servidor de MLFlow](#lanzar-el-servidor-de-mlflow)
     - [Lanza el experimento configurado por defecto](#lanza-el-experimento-configurado-por-defecto)
 
@@ -172,6 +173,10 @@ RDS_USER=<añade aquí tu usuario>
 RDS_PW=<añade tu contraseña>
 PYTHONPATH=path/en/tu/equipo/bootcamp-ia-sprint-4
 ```
+### Descarga el dataset de evaluación
+
+Descarga el dataset de evaluación de [este link](https://grupovass-my.sharepoint.com/:u:/g/personal/gabriel_munozr_intelygenz_com/EV0xH27mzcZLgA8Hnr9wdGoBJxZ9eBzELasvfkox5Q9qDQ?e=OSdQHm) y guárdalo en `path/en/tu/equipo/bootcamp-ia-sprint-4/retrieval/evaluation/data/eval_queries.json`
+
 
 ### Lanzar el servidor de MLFlow
 
