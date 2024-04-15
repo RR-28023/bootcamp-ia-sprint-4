@@ -52,7 +52,7 @@ Hemos creado un dataset con 300 ejemplos de *query* y película que debería rec
 * `secs_per_query`: El tiempo medio que tarda el sistema en recuperar las 10 películas más simialres a una *query* dada
 * `index_gen_time`: El tiempo que tarda el sistema en generar los embeddings para todas las películas
 
-El dataset se puede descargar de `aquí` y deberá guardarse en `/bootcamp-ia-sprint-4/retrieaval/evaluation/data/eval_queries.json`
+El dataset se puede descargar de [este link](https://grupovass-my.sharepoint.com/:u:/g/personal/gabriel_munozr_intelygenz_com/EV0xH27mzcZLgA8Hnr9wdGoBJxZ9eBzELasvfkox5Q9qDQ?e=OSdQHm) y deberá guardarse en `/bootcamp-ia-sprint-4/retrieaval/evaluation/data/eval_queries.json`
 
 
 ## Ejercicio
@@ -62,11 +62,11 @@ los resultados de nuestros experimentos usaremos un servidor local de [MLFlow](h
 
 Para acotar el ejercicio, limitamos los parámetros y enfoques con los que se puede experimentar a:
 
-* La función usada para generar, a partir del objeto `Movie`, el texto con el que generaremos los embeddings. El alumno es libre de usar cualquier función que se le ocurra (deberá definirla en `retrieval/indexing_pipeline_utils.py` e indicarla como `_text_to_embed_fn` en `retrieval/config`). Como ejemplo se incluye una muy básica (`get_synopsys_txt`)
+* La función usada para generar, a partir del objeto `Movie`, el texto con el que generaremos los embeddings. El alumno es libre de usar cualquier función que se le ocurra (deberá definirla en `retrieval/indexing_pipeline_utils.py` e indicarla como `_text_to_embed_fn` en `retrieval/config`). Como ejemplo se incluye una muy básica (`get_synopsys_txt`).
 
-* El modelo de embeddings a usar. El código acepta cualquier modelo de HuggingFace. Deberá indicarse en `retrieval/config` en la variable `model_name` (por ejemplo `all-MiniLM-L12-v2`)
+* El modelo de embeddings a usar. El código acepta cualquier modelo de HuggingFace. Deberá indicarse en `retrieval/config` en la variable `model_name` (por ejemplo `all-MiniLM-L12-v2`).
   
-* La función usada para procesar la query de entrada. El alumno es libre de usar cualquier función que se le ocurra (deberá definirla en `retrieval/retrieval_pipeline_utils.py` e indicarla como `_query_prepro_fn` en `retrieval/config`). Como ejemplo se incluye (`clean_query_txt`)
+* La función usada para procesar la query de entrada. El alumno es libre de usar cualquier función que se le ocurra (deberá definirla en `retrieval/retrieval_pipeline_utils.py` e indicarla como `_query_prepro_fn` en `retrieval/config`). Como ejemplo se incluye `clean_query_txt`.
 
 El alumno debe ejecutar al menos tres experimentos distintos (a.k.a "mlflow runs") donde modifique alguno o varios de esos parámetros para intentar mejorar la métrica `mean_mrr10` que se obtiene con el baseline que viene por defecto en el código:
 
@@ -78,11 +78,16 @@ El alumno debe ejecutar al menos tres experimentos distintos (a.k.a "mlflow runs
 
 Los **entregables** son:
 
-* Una captura de pantalla donde se vea el "dashboard de MLlow del alumno con los experimentos de MLflow realizados, incluyendo las métricas y parámetros obtenidos. Por ejemplo:
+* Una captura de pantalla donde se vea el "dashboard de MLFlow del alumno con los experimentos de MLflow realizados, incluyendo las métricas y parámetros obtenidos. Por ejemplo:
+
+
+<p align="center">
+    <img src="docs/mlflow_3_experiments.png" alt="alt text" width="700">
+</p>
 
 
 
-* Una Pull Request al repositorio con el código que permitiría replicar dichos experimentos
+* Una Pull Request al repositorio con el código que permita replicar dichos experimentos
 
 
 ## Notas importantes (!!)
