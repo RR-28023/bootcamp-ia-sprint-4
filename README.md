@@ -1,5 +1,7 @@
 # Ejercicio práctico sesión 2 - Desarrollo del módulo de *retrieval* de un sistema RAG
 
+Oscar Andres Pinilla Leon
+
 Imaginemos que estamos desarrollando un *chatbot* para recomendar películas que, entre otras funciones, tiene
 un módulo de *retrieval* que se encarga de buscar las películas que más se ajusten a una descripción dada. 
 
