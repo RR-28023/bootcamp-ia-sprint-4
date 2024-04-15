@@ -3,6 +3,10 @@ import logging
 import os
 import time
 from pathlib import Path
+from dotenv import load_dotenv
+import sys
+load_dotenv()
+sys.path.append(os.getenv("PYTHONPATH"))
 
 import colorlog
 import mlflow
