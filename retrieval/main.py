@@ -33,7 +33,7 @@ def load_embedder(config: RetrievalExpsConfig) -> HuggingFaceEmbeddings:
     encode_kwargs = {"normalize_embeddings": config.normalize_embeddings}
     # Ver: https://api.python.langchain.com/en/latest/embeddings/langchain_community.embeddings.huggingface.HuggingFaceEmbeddings.html#langchain-community-embeddings-huggingface-huggingfaceembeddings
     embedder = HuggingFaceEmbeddings(
-        model_name=exp_config.model_name,
+        model_name=config.model_name,
         multi_process=False,
         show_progress=True,
         encode_kwargs=encode_kwargs,

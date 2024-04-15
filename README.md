@@ -171,7 +171,7 @@ conda activate movies
 
 ### Actualiza variables de entorno con tus credenciales
 
-Crea un archivo `.env` con el siguiente contenido (sustituyendo donde corresponda):
+Crea un archivo `.env` en `path/en/tu/equipo/bootcamp-ia-sprint-4/.env` con el siguiente contenido (sustituyendo donde corresponda):
 
 ```
 RDS_HOST=qualentum-movies.cacl8vunaq4c.eu-west-3.rds.amazonaws.com
