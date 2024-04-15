@@ -127,8 +127,7 @@ def calc_mrr(expected_movie_id: int, retrieved_movies_ids=list[int]) -> tuple[fl
     rank = -1
     if expected_movie_id in retrieved_movies_ids:
         rank = retrieved_movies_ids.index(expected_movie_id) + 1
-        mrr += 1 / rank
-    mrr = mrr / len(retrieved_movies_ids)
+        mrr = 1 / rank
     return mrr, rank
 
 
