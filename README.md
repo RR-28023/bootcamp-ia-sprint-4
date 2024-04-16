@@ -177,6 +177,7 @@ Crea un archivo `.env` en `path/en/tu/equipo/bootcamp-ia-sprint-4/.env` con el s
 RDS_HOST=qualentum-movies.cacl8vunaq4c.eu-west-3.rds.amazonaws.com
 RDS_USER=<añade aquí tu usuario>
 RDS_PW=<añade tu contraseña>
+RDS_DB=postgres
 PYTHONPATH=path/en/tu/equipo/bootcamp-ia-sprint-4
 ```
 ### Descarga el dataset de evaluación

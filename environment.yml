@@ -230,4 +230,3 @@ dependencies:
       - tqdm==4.66.2
       - transformers==4.39.2
       - triton==2.2.0
-prefix: /home/ramon.rotaeche/miniconda3/envs/movies
