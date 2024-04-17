@@ -1,4 +1,4 @@
-name: movies_new
+name: movies
 channels:
   - defaults
 dependencies:
