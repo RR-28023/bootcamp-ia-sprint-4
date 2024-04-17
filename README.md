@@ -169,6 +169,11 @@ conda env create -f environment.yml
 conda activate movies
 ```
 
+Nota para usuarios de **Windows**, dependiendo de vuestra versión, puede que la terminal no reconozca el comando `conda`. 
+En ese caso tenéis que ejecutar todos los comandos deste el `Anaconda Prompt Shell` (lo podéis encontrar buscando en el
+menú de inicio una vez instalado Anaconda)
+
+
 ### Actualiza variables de entorno con tus credenciales
 
 Crea un archivo `.env` en `path/en/tu/equipo/bootcamp-ia-sprint-4/.env` con el siguiente contenido (sustituyendo donde corresponda):
@@ -180,6 +185,9 @@ RDS_PW=<añade tu contraseña>
 RDS_DB=postgres
 PYTHONPATH=path/en/tu/equipo/bootcamp-ia-sprint-4
 ```
+
+**IMPORTANTE!**: el archivo `.env` no se debe versionar ni subir a github nunca, ya que contiene credenciales privados.
+
 ### Descarga el dataset de evaluación
 
 Descarga el dataset de evaluación de [este link](https://grupovass-my.sharepoint.com/:u:/g/personal/gabriel_munozr_intelygenz_com/EV0xH27mzcZLgA8Hnr9wdGoBJxZ9eBzELasvfkox5Q9qDQ?e=OSdQHm) y guárdalo en `path/en/tu/equipo/bootcamp-ia-sprint-4/retrieval/evaluation/data/eval_queries.json`
