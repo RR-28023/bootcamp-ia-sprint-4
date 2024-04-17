@@ -69,7 +69,7 @@ Hemos creado un dataset con 300 ejemplos de *query* y película que debería rec
 * `secs_per_query`: El tiempo medio que tarda el sistema en recuperar las 10 películas más simialres a una *query* dada
 * `index_gen_time`: El tiempo que tarda el sistema en generar los embeddings para todas las películas
 
-El dataset se puede descargar de [este link](https://grupovass-my.sharepoint.com/:u:/g/personal/gabriel_munozr_intelygenz_com/EV0xH27mzcZLgA8Hnr9wdGoBJxZ9eBzELasvfkox5Q9qDQ?e=OSdQHm) y deberá guardarse en `/bootcamp-ia-sprint-4/retrieaval/evaluation/data/eval_queries.json`
+El dataset se puede descargar de [este link](https://grupovass-my.sharepoint.com/:u:/g/personal/gabriel_munozr_intelygenz_com/EV0xH27mzcZLgA8Hnr9wdGoBJxZ9eBzELasvfkox5Q9qDQ?e=OSdQHm) y deberá guardarse en `/bootcamp-ia-sprint-4/retrieval/evaluation/data/eval_queries.json`
 
 
 ## Ejercicio

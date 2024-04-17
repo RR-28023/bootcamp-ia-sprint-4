@@ -3,6 +3,7 @@ import sys
 from dotenv import load_dotenv
 import os
 import logging
+from pathlib import Path
 load_dotenv()
 sys.path.append(os.getenv("PYTHONPATH"))
 # Set current working directory to the root of the project
@@ -29,7 +30,7 @@ eval_queries = load_eval_queries()
 
 #%%
 # Veamos qué tal funciona
-idx_ejemplo = 54
+idx_ejemplo = 2
 query = eval_queries[idx_ejemplo]
 query, expected_movie_id = query["query"], query["movie_id"]
 retrieved_docs, t_elapsed = retrieval_pipeline(query, index, exp_config, logger)
