@@ -121,6 +121,11 @@ que modificar, son:
   Si una vez realizado los tres experimentos como pide el enunciado, el alumno quiere modificar otras partes del código
   para ver si consigue mejorar más la métrica o cualquier otra mejora, es más que bienvenido.
 
+
+* Para evitar problemas con la librería FAISS en Windows, debido a este [issue](https://github.com/facebookresearch/faiss/issues/3073),
+  no podéis clonar el repositorio en un path que contenga la "ñ" o acentos, por ejemplo, este path **NO VALDRÍA**: `C:/Users/Desktop/04_Diseño_y_Estrategias_en_Producción_para_Soluciones_de_IA/bootcamp-ia-sprint-4` 
+
+
 * Dependiendo del modelo que se use, es normal que los embeddings tarden bastante tiempo en generarse si no disponemos
 de una GPU (p.ej. veasé el experimento de la primera fila en la imagen de arriba, donde se ve que se 
 tardaron 57 minutos en generar). Por eso se ha incluido una funcionalidad de "cache" que guarda localmente los embeddings
