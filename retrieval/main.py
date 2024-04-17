@@ -127,7 +127,7 @@ if __name__ == "__main__":
         logger.info(f"Evaluando el modelo de retieval con {len(eval_queries):,} queries...")
         logger.info(f"Cargando el índice con los embeddings..")
         embedder = load_embedder(exp_config)
-        embedder.show_progress = False
+        embedder.show_progress = True
         index = FAISS.load_local(
             CACHE_PATH / f"faiss_{exp_config.index_config_unique_id}",
             embeddings=embedder,

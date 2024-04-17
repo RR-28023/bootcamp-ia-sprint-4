@@ -23,8 +23,25 @@ def create_docs_to_embedd(movies: list[Movie], config: config.RetrievalExpsConfi
 
 ## Posibles funciones para usar como `text_to_embed_fn` en `RetrievalExpsConfig` ##
 
+def get_enriched_movie_text(movie: Movie) -> str:
+    """
+    Combina varios atributos de la película para formar un texto enriquecido.
+    Argumentos:
+        movie (Movie): Un objeto película que contiene múltiples atributos descriptivos.
+    Retorna:
+        str: Un texto enriquecido que representa la película.
+    """
+    # Concatenar información relevante de la película
+    attributes = [
+        movie.title_es,
+        movie.title_original,
+        movie.director_top_5,
+        movie.cast_top_5,
+        movie.genre_tags,
+        movie.synopsis
+    ]
+    enriched_text = ' '.join(attributes)
+    return enriched_text
 
 def get_synopsys_txt(movie: Movie) -> str:
     return movie.synopsis
-
-# def ...
