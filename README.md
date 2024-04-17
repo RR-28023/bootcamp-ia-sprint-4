@@ -163,9 +163,19 @@ git pull upstream main
 
 Cambia a la carpeta donde has clonado este repositorio y ejecuta:
 
+Si tienes **Linux o Mac**:
+
 ```bash
 path/en/tu/equipo/bootcamp-ia-sprint-4$ 
 conda env create -f environment.yml
+conda activate movies
+```
+
+Si tienes **Windows**:
+
+```bash
+path/en/tu/equipo/bootcamp-ia-sprint-4$ 
+conda env create -f env_windows.yml
 conda activate movies
 ```
 
