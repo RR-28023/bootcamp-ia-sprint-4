@@ -145,13 +145,13 @@ los pasos según tu sistema operativo [indicados en este link](https://docs.anac
 
 Además esto instalará Python en tu equipo si no lo tienes.
 
-Nota para usuarios de **Windows**:
-
-Es recomendable que marquéis todas las casillas. Incluida la no recomendada, que sirve para añadir
+Nota para usuarios de **Windows**: Es recomendable que marquéis todas las casillas. Incluida la no recomendada, que sirve para añadir
 `conda` a la variable de entorno PATH del sistema. Esto facilitará el uso de `conda` desde cualquier terminal, incluida
 la de VSCode.
 
-![alt text](docs/miniconda_windows.jpeg)
+<p align="center">
+    <img src="docs/miniconda_windows.jpeg" alt="alt text" width="400">
+</p>
 
 ### Crea un fork del repositorio y crea un entorno conda para este repositorio
 
