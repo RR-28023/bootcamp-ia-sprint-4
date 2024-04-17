@@ -108,7 +108,7 @@ def generar_prompts_evaluation_set(movies: list[Movie]):
 
 
 def load_eval_queries():
-    with open("retrieval/evaluation/data/eval_queries.json", "r") as f:
+    with open("retrieval/evaluation/data/eval_queries.json", encoding="utf8") as f:
         queries = json.load(f)
     return queries
 
