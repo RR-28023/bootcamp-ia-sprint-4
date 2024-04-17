@@ -152,6 +152,14 @@ los pasos según tu sistema operativo [indicados en este link](https://docs.anac
 
 Además esto instalará Python en tu equipo si no lo tienes.
 
+Nota para usuarios de **Windows**: Es recomendable que marquéis todas las casillas. Incluida la no recomendada, que sirve para añadir
+`conda` a la variable de entorno PATH del sistema. Esto facilitará el uso de `conda` desde cualquier terminal, incluida
+la de VSCode.
+
+<p align="center">
+    <img src="docs/miniconda_windows.jpeg" alt="alt text" width="400">
+</p>
+
 ### Crea un fork del repositorio y crea un entorno conda para este repositorio
 
 Cierra la terminal y abre otra (esto es importante para que tengan efecto los cambios tras instalar `conda`).
@@ -215,7 +223,9 @@ Descarga el dataset de evaluación de [este link](https://grupovass-my.sharepoin
 En una terminal en el directorio donde está el repositorio, ejecuta:
 
 ```bash
- path/en/tu/equipo/bootcamp-ia-sprint-4$  mlflow server --host 127.0.0.1 --port 8080
+ path/en/tu/equipo/bootcamp-ia-sprint-4$
+ conda activate movies
+ mlflow server --host 127.0.0.1 --port 8080
 ```
 
 Ahora ya puedes ver en tu navegador el "dashboard" de mlflow (en `http://localhost:8080/`)
