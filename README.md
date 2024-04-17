@@ -69,7 +69,7 @@ Hemos creado un dataset con 300 ejemplos de *query* y película que debería rec
 * `secs_per_query`: El tiempo medio que tarda el sistema en recuperar las 10 películas más simialres a una *query* dada
 * `index_gen_time`: El tiempo que tarda el sistema en generar los embeddings para todas las películas
 
-El dataset se puede descargar de [este link](https://grupovass-my.sharepoint.com/:u:/g/personal/gabriel_munozr_intelygenz_com/EV0xH27mzcZLgA8Hnr9wdGoBJxZ9eBzELasvfkox5Q9qDQ?e=OSdQHm) y deberá guardarse en `/bootcamp-ia-sprint-4/retrieaval/evaluation/data/eval_queries.json`
+El dataset se puede descargar de [este link](https://grupovass-my.sharepoint.com/:u:/g/personal/gabriel_munozr_intelygenz_com/EV0xH27mzcZLgA8Hnr9wdGoBJxZ9eBzELasvfkox5Q9qDQ?e=OSdQHm) y deberá guardarse en `/bootcamp-ia-sprint-4/retrieval/evaluation/data/eval_queries.json`
 
 
 ## Ejercicio
@@ -169,6 +169,11 @@ conda env create -f environment.yml
 conda activate movies
 ```
 
+Nota para usuarios de **Windows**, dependiendo de vuestra versión, puede que la terminal no reconozca el comando `conda`. 
+En ese caso tenéis que ejecutar todos los comandos deste el `Anaconda Prompt Shell` (lo podéis encontrar buscando en el
+menú de inicio una vez instalado Anaconda)
+
+
 ### Actualiza variables de entorno con tus credenciales
 
 Crea un archivo `.env` en `path/en/tu/equipo/bootcamp-ia-sprint-4/.env` con el siguiente contenido (sustituyendo donde corresponda):
@@ -180,6 +185,9 @@ RDS_PW=<añade tu contraseña>
 RDS_DB=postgres
 PYTHONPATH=path/en/tu/equipo/bootcamp-ia-sprint-4
 ```
+
+**IMPORTANTE!**: el archivo `.env` no se debe versionar ni subir a github nunca, ya que contiene credenciales privados.
+
 ### Descarga el dataset de evaluación
 
 Descarga el dataset de evaluación de [este link](https://grupovass-my.sharepoint.com/:u:/g/personal/gabriel_munozr_intelygenz_com/EV0xH27mzcZLgA8Hnr9wdGoBJxZ9eBzELasvfkox5Q9qDQ?e=OSdQHm) y guárdalo en `path/en/tu/equipo/bootcamp-ia-sprint-4/retrieval/evaluation/data/eval_queries.json`
