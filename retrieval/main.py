@@ -5,16 +5,18 @@ import time
 from pathlib import Path
 from dotenv import load_dotenv
 import sys
-load_dotenv()
+os.environ["RDS_HOST"] = "qualentum-movies.cacl8vunaq4c.eu-west-3.rds.amazonaws.com"
+os.environ["RDS_USER"] = "alumno_qualentum"
+os.environ["RDS_PW"] = "a78dysdg919z"
+os.environ["RDS_DB"] = "postgres"
+os.environ["PYTHONPATH"] = "C:/Users/Ornella Gigante/bootcamp-ia-sprint-4"
 sys.path.append(os.getenv("PYTHONPATH"))
-
 import colorlog
 import mlflow
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_core.documents import Document
 from tqdm import tqdm
-
 from data_utils import get_movies_data
 from retrieval.config import RetrievalExpsConfig
 from retrieval.evaluation import (

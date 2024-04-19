@@ -2,6 +2,21 @@ import json
 import random
 import matplotlib.pyplot as plt
 import seaborn as sns
+from langchain_core.documents import Document
+from data_utils import Movie
+from retrieval.config import RetrievalExpsConfig
+from transformers import M2M100ForConditionalGeneration, M2M100Tokenizer
+import json
+import random
+import matplotlib.pyplot as plt
+import seaborn as sns
+from langchain_core.documents import Document
+from data_utils import Movie
+from retrieval.config import RetrievalExpsConfig
+import json
+import random
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 from langchain_core.documents import Document
@@ -118,7 +133,6 @@ def load_test_queries():
         queries = json.load(f)
     return queries
 
-
 def calc_mrr(expected_movie_id: int, retrieved_movies_ids=list[int]) -> tuple[float, int]:
     """
     Dada una query y una lista de películas devueltas usando nuestro algoritmo de retrieval, calculamos el MRR
@@ -129,6 +143,7 @@ def calc_mrr(expected_movie_id: int, retrieved_movies_ids=list[int]) -> tuple[fl
         rank = retrieved_movies_ids.index(expected_movie_id) + 1
         mrr = 1 / rank
     return mrr, rank
+
 
 
 def is_in_results(expected_movie_id: int, retrieved_movies_ids=list[int]):
