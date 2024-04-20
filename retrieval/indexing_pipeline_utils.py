@@ -1,3 +1,4 @@
+
 from __future__ import annotations
 
 from langchain_core.documents import Document
@@ -22,9 +23,23 @@ def create_docs_to_embedd(movies: list[Movie], config: config.RetrievalExpsConfi
 
 
 ## Posibles funciones para usar como `text_to_embed_fn` en `RetrievalExpsConfig` ##
+def get_info_txt(movie: Movie) -> str:
 
+    info:str = "\n".join([movie.title_es, movie.synopsis])
+    return info
 
-def get_synopsys_txt(movie: Movie) -> str:
-    return movie.synopsis
+def get_more_info_txt(movie: Movie) -> str:
 
-# def ...
+    info:str = "\n".join([movie.title_es, movie.synopsis, movie.genre_tags])
+    return info
+
+def get_more_more_info_txt(movie: Movie) -> str:
+
+    info:str = "\n".join([movie.title_es, movie.country, movie.synopsis, movie.genre_tags])
+    return info
+
+# ## Posibles funciones para usar como `text_to_embed_fn` en `RetrievalExpsConfig` ##
+# def get_info_txt(movie: Movie) -> str:
+
+#     info:str = "\n".join([movie.title_es, movie.synopsis])
+#     return info
