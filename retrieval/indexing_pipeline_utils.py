@@ -27,4 +27,23 @@ def create_docs_to_embedd(movies: list[Movie], config: config.RetrievalExpsConfi
 def get_synopsys_txt(movie: Movie) -> str:
     return movie.synopsis
 
-# def ...
+def get_clean_synopsys(movie: Movie) -> str:
+    synopsis = movie.synopsis
+    title = movie.title_es
+    genre = movie.genre_tags
+
+    clean_synopsis = "La película se titula " + title + ", la película es de los géneros: " + genre + " y su sinopsis es: " + synopsis
+
+    return clean_synopsis
+
+def get_clean_synopsys_2(movie: Movie) -> str:
+    synopsis = movie.synopsis
+    title = movie.title_es
+    country = movie.country
+    genre = movie.genre_tags
+    genre = genre.replace("&", "y")
+    genre = genre.replace(";", " ")
+
+    clean_synopsis = "La película se titula " + title + ", es de los géneros: " + genre + ", ha sido creada por " + country + " y su sinopsis es: " + synopsis
+
+    return clean_synopsis
