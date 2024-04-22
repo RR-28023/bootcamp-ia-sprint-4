@@ -19,14 +19,16 @@ class RetrievalExpsConfig:
     # model_name = "jaimevera1107/all-MiniLM-L6-v2-similarity-es"
     # model_name = "paraphrase-multilingual-MiniLM-L12-v2"
     # model name = "hiiamsid/sentence_similarity_spanish_es"
+    # model_name = "hackathon-pln-es/paraphrase-spanish-distilroberta"
+    # model_name = "LaBSE"
     def __init__(self):
 
         # Función a emplear para generar el texto a indexar con embeddings; Debe tomar como input un objeto `Movie` y devolver un string
-        self._text_to_embed_fn: Callable = get_clean_synopsis_txt_v3
+        self._text_to_embed_fn: Callable = get_clean_synopsis_txt_v2
 
         # Parámetros para la generación de embeddings
 
-        self.model_name: str = "hiiamsid/sentence_similarity_spanish_es"
+        self.model_name: str = "LaBSE"
         self.normalize_embeddings: bool = False  # Normalizar los embeddings a longitud 1 antes de indexarlos
 
         self._query_prepro_fn: Callable = clean_query_txt
