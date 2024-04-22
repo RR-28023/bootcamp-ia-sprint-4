@@ -4,7 +4,7 @@ from typing import Callable
 
 from data_utils import Movie
 from retrieval.indexing_pipeline_utils import get_synopsys_txt, get_synopsys_and_extra_data
-from retrieval.retrieval_pipeline_utils import clean_query_txt
+from retrieval.retrieval_pipeline_utils import clean_query_txt, modified_query_txt
 
 
 class RetrievalExpsConfig:
@@ -26,7 +26,7 @@ class RetrievalExpsConfig:
         self.model_name: str = "all-mpnet-base-v2"
         self.normalize_embeddings: bool = False  # Normalizar los embeddings a longitud 1 antes de indexarlos
 
-        self._query_prepro_fn: Callable = clean_query_txt
+        self._query_prepro_fn: Callable = modified_query_txt
 
     ## NO MODIFICAR A PARTIR DE AQUÍ ##
 
