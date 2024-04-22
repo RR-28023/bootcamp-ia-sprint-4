@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Callable
 
 from data_utils import Movie
-from retrieval.indexing_pipeline_utils import get_synopsys_txt
+from retrieval.indexing_pipeline_utils import get_synopsys_txt, get_synopsys_and_extra_data
 from retrieval.retrieval_pipeline_utils import clean_query_txt
 
 
@@ -19,7 +19,7 @@ class RetrievalExpsConfig:
     def __init__(self):
 
         # Función a emplear para generar el texto a indexar con embeddings; Debe tomar como input un objeto `Movie` y devolver un string
-        self._text_to_embed_fn: Callable = get_synopsys_txt
+        self._text_to_embed_fn: Callable = get_synopsys_and_extra_data
 
         # Parámetros para la generación de embeddings
 
