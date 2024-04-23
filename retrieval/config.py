@@ -3,8 +3,8 @@ from __future__ import annotations
 from typing import Callable
 
 from data_utils import Movie
-from retrieval.indexing_pipeline_utils import get_synopsys_txt
-from retrieval.retrieval_pipeline_utils import clean_query_txt
+from retrieval.indexing_pipeline_utils import get_synopsys_txt , get_sy_au_dir , get_sy_au_dir_year
+from retrieval.retrieval_pipeline_utils import clean_query_txt_caracteres_especiales
 
 
 class RetrievalExpsConfig:
@@ -19,14 +19,29 @@ class RetrievalExpsConfig:
     def __init__(self):
 
         # Función a emplear para generar el texto a indexar con embeddings; Debe tomar como input un objeto `Movie` y devolver un string
-        self._text_to_embed_fn: Callable = get_synopsys_txt
+
+        #self._text_to_embed_fn: Callable = get_synopsys_txt
+        self._text_to_embed_fn: Callable = get_sy_au_dir
+        #self._text_to_embed_fn: Callable = get_sy_au_dir_year
+
 
         # Parámetros para la generación de embeddings
+        
+        #self.model_name: str = "all-MiniLM-L6-v2"
+        #self.model_name: str = "bert-base-multilingual-cased"
+        #self.model_name: str = "Qwen/CodeQwen1.5-7B-Chat"
+        #self.model_name: str = "ecastera/eva-mistral-dolphin-7b-spanish"
+        #self.model_name: str = "maidalun1020/bce-embedding-base_v1"
+        #self.model_name: str = "Salesforce/SFR-Embedding-Mistral"        
+        #self.model_name: str = "Snowflake/snowflake-arctic-embed-m"
+        #self.model_name: str = "NeuralNovel/Gecko-7B-v0.1-DPO"
+        #self.model_name: str = "acge_text_embedding"
+        self.model_name: str = "intfloat/multilingual-e5-large"
+    
 
-        self.model_name: str = "all-MiniLM-L6-v2"
         self.normalize_embeddings: bool = False  # Normalizar los embeddings a longitud 1 antes de indexarlos
 
-        self._query_prepro_fn: Callable = clean_query_txt
+        self._query_prepro_fn: Callable = clean_query_txt_caracteres_especiales
 
     ## NO MODIFICAR A PARTIR DE AQUÍ ##
 

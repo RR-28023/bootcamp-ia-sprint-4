@@ -27,4 +27,28 @@ def create_docs_to_embedd(movies: list[Movie], config: config.RetrievalExpsConfi
 def get_synopsys_txt(movie: Movie) -> str:
     return movie.synopsis
 
+def get_sy_au_dir(movie: Movie) -> str:
+    # Construir la parte de la sinopsis
+    str_mov = movie.synopsis + ", "
+
+    # Agregar los autores del guion
+    str_mov += "Autores: " + movie.script_top_5 + ", "
+
+    # Agregar el director
+    str_mov += "Director: " + movie.director_top_5
+
+    return str_mov
+def get_sy_au_dir_year(movie: Movie) -> str:
+    # Construir la parte de la sinopsis
+    str_mov = movie.synopsis + ", "
+
+    # Agregar los autores del guion
+    str_mov += "Autores: " + movie.script_top_5 + ", "
+
+    # Agregar el director
+    str_mov += "Director: " + movie.director_top_5 + ","
+    str_mov += "Año: " + movie.year
+    
+    return str_mov
+
 # def ...
