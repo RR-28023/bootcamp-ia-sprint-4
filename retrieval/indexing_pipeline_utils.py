@@ -45,3 +45,10 @@ def get_clean_synopsis_txt_v3(movie: Movie) -> str:
     movie_clean = movie_clean + genre_clean
     
     return movie_clean
+
+def get_clean_synopsis_txt_v4(movie: Movie) -> str:
+    movie_clean = movie.synopsis.replace("(FILMAFINITY)", "")
+    genre_clean = movie.genre_tags.lower()
+    movie_clean = movie_clean + genre_clean
+    
+    return movie_clean
