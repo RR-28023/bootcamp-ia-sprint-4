@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Ejercicio práctico sesión 2 - Desarrollo del módulo de *retrieval* de un sistema RAG
 
 - [Ejercicio práctico sesión 2 - Desarrollo del módulo de *retrieval* de un sistema RAG](#ejercicio-práctico-sesión-2---desarrollo-del-módulo-de-retrieval-de-un-sistema-rag)
@@ -251,3 +252,8 @@ python retrieval/main.py
 ```
 
 
+=======
+# bootcamp-ia-sprint-4
+Repositorio que utilizaremos en el bloque de "Diseño y Estrategias para la puesta en producción de soluciones basadas en IA"
+# Leonardo Sánchez Roncancio
+>>>>>>> 34775517df949888879b08927116a14de6a0d733
