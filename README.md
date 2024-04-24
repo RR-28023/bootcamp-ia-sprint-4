@@ -1,7 +1,7 @@
 # BOOTCAMP IA - SPRINT 04
 ## Práctica LAB 02 - Sistema RAG 
 ## Alumno: Rubén García Álvarez
-## Prueba modificando en local y realizando un commit & push al repositorio remoto..
+## Prueba modificando en local y realizando un commit & push al repositorio remoto..02
 
 # Ejercicio práctico sesión 2 - Desarrollo del módulo de *retrieval* de un sistema RAG
 
