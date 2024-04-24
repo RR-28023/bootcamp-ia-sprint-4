@@ -1,3 +1,5 @@
+#%%
+
 from __future__ import annotations
 
 from langchain_core.documents import Document
@@ -28,3 +30,10 @@ def get_synopsys_txt(movie: Movie) -> str:
     return movie.synopsis
 
 # def ...
+def add_gen(movie: Movie) -> str:
+    inf = "".join([movie.synopsis , movie.genre_tags])
+    inf = inf.replace("FILMAFFINITY" , "") 
+    inf.lower()
+    return inf
+
+
