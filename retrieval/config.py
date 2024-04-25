@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Callable
 
 from data_utils import Movie
-from retrieval.indexing_pipeline_utils import get_synopsys_txt
+from retrieval.indexing_pipeline_utils import get_synopsys_txt_2
 from retrieval.retrieval_pipeline_utils import clean_query_txt
 
 
@@ -16,14 +16,24 @@ class RetrievalExpsConfig:
     s
     """
 
+    # SOME MODELS Y TRY 
+    # models - "sentence-transformers/multi-qa-distilbert-cos-v1"
+    # models - "sentence-transformers/all-MiniLM-L6-v2"
+    # models - "sentence-transformers/all-mpnet-base-v2"
+    # models - "mrm8488/distiluse-base-multilingual-cased-v2-finetuned-stsb_multi_mt-es"
+    # models - "hiiamsid/sentence_similarity_spanish_es"
+    # models - "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    # models - "sentence-transformers/somosnlp-hackathon-2022/paraphrase-spanish-distilroberta"
+    # models - "jinaai/jina-embeddings-v2-base-es"
+    
     def __init__(self):
 
         # Función a emplear para generar el texto a indexar con embeddings; Debe tomar como input un objeto `Movie` y devolver un string
-        self._text_to_embed_fn: Callable = get_synopsys_txt
+        self._text_to_embed_fn: Callable = get_synopsys_txt_2
 
         # Parámetros para la generación de embeddings
 
-        self.model_name: str = "all-MiniLM-L6-v2"
+        self.model_name: str = "hiiamsid/sentence_similarity_spanish_es"
         self.normalize_embeddings: bool = False  # Normalizar los embeddings a longitud 1 antes de indexarlos
 
         self._query_prepro_fn: Callable = clean_query_txt
