@@ -27,4 +27,8 @@ def create_docs_to_embedd(movies: list[Movie], config: config.RetrievalExpsConfi
 def get_synopsys_txt(movie: Movie) -> str:
     return movie.synopsis
 
-# def ...
+def _text_to_embed_fn(movie: Movie) -> str:
+    
+    prompt = f"Encuentra una película del género {movie.genre_tags} con que tenga la siguiente trama: {movie.synopsis}"
+
+    return prompt

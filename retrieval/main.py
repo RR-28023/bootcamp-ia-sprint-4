@@ -15,7 +15,7 @@ from langchain_community.vectorstores import FAISS
 from langchain_core.documents import Document
 from tqdm import tqdm
 
-from data_utils import get_movies_data
+from data_utils.db_utils import get_movies_data
 from retrieval.config import RetrievalExpsConfig
 from retrieval.evaluation import (
     calc_mrr,
