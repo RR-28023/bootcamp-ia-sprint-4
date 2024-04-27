@@ -147,15 +147,15 @@ def comparar_resultado_con_esperado(
     esperado = Movie(**esperado.metadata)
 
     comp = f""" 
------------------------------
-## Query:
-{query}
-## Doc resultado obtenido:
-{txt_to_embed_fn(resultado)}
-## Doc resultado esperado:
-{txt_to_embed_fn(esperado)}
------------------------------
-    """
+            -----------------------------
+            ## Query:
+            {query}
+            ## Doc resultado obtenido:
+            {txt_to_embed_fn(resultado)}
+            ## Doc resultado esperado:
+            {txt_to_embed_fn(esperado)}
+            -----------------------------
+            """
     return comp
 
 def plot_rank_distribution(ranks = list[int]):

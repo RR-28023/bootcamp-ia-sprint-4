@@ -109,7 +109,8 @@ if __name__ == "__main__":
 
     # Configuramos mlflow
     mlflow.set_tracking_uri("http://localhost:8080")
-    mlflow.set_experiment("Embeddings Retrieval")
+    # mlflow.set_experiment("Embeddings Retrieval")
+    mlflow.set_experiment("Embeddings Retrieval - Experimentos LAB_01 (RGA)")
 
     with mlflow.start_run():
 

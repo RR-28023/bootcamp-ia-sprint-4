@@ -23,8 +23,19 @@ def create_docs_to_embedd(movies: list[Movie], config: config.RetrievalExpsConfi
 
 ## Posibles funciones para usar como `text_to_embed_fn` en `RetrievalExpsConfig` ##
 
+# Metodos o funciones que se utilizan para obtener los datos de la bbdd en un objeto
+# "Movie", y se preprocesan para utilizarlos en la query o prompt de input al modelo
+# preprocesado de generative txt..[RGA]
 
 def get_synopsys_txt(movie: Movie) -> str:
     return movie.synopsis
 
 # def ...
+
+def get_dataMovies_transform_txt(movie: Movie) -> str:
+    
+    synopsis = movie.synopsis.replace("(FILMAFINITY)", "")
+    genres = movie.genre_tags.lower()
+    data_movie = synopsis + genres
+
+    return data_movie

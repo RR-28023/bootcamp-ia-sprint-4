@@ -7,3 +7,5 @@ __pycache__
 *.pkl
 */.cache/*
 mlartifacts/*
+analysis/*
+retrieval/evaluation.py

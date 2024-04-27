@@ -42,4 +42,6 @@ expected_movie_doc.metadata
 query
 # %%
 retrieved_docs[0].metadata
+
 # %%
+
