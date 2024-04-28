@@ -22,6 +22,9 @@ class RetrievalExpsConfig:
         self._text_to_embed_fn: Callable = get_synopsys_txt
 
         # Parámetros para la generación de embeddings
+        
+        self.max_seq_length: int = 128  # Cambiar el tamaño máximo de secuencia
+        self.tokenizer_name: str = "bert-base-uncased"  # Cambiar el tokenizador utilizado
 
         self.model_name: str = "all-MiniLM-L6-v2"
         self.normalize_embeddings: bool = False  # Normalizar los embeddings a longitud 1 antes de indexarlos
