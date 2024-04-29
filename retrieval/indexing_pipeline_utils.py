@@ -25,6 +25,18 @@ def create_docs_to_embedd(movies: list[Movie], config: config.RetrievalExpsConfi
 
 
 def get_synopsys_txt(movie: Movie) -> str:
-    return movie.synopsis
+    response = dict()
+    response["title_es"] = movie.title_es 
+    response["title_original"] = movie.title_original
+    response["duration_mins"] = movie.duration_mins
+    response["year"] = movie.year
+    response["genre_tags"] = movie.genre_tags
+    response["director_top_5"] = movie.director_top_5
+    response["script_top_5"] = movie.script_top_5
+    response["cast_top_5"] = movie.cast_top_5
+    response["photography_top_5"] = movie.photography_top_5
+    response["synopsis"] = movie.synopsis
+    print(response)
+    return str(response)
 
 # def ...
