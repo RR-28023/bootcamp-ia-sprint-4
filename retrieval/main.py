@@ -107,6 +107,16 @@ if __name__ == "__main__":
     )
     logger.addHandler(handler)
 
+    # Comprobamos que las variables de entorno se han cargado bien
+    rds_host = os.getenv("RDS_HOST", "")
+    if rds_host == "qualentum-movies.cacl8vunaq4c.eu-west-3.rds.amazonaws.com":
+        logger.info("Variables de entorno cargadas correctamente.")        
+    else:
+        logger.error("Las variables de entorno no están bien definidas o no se han cargado bien. Revisa el contenido"
+                     "y ubicación del fichero .env")
+        sys.exit(1)
+
+
     # Configuramos mlflow
     mlflow.set_tracking_uri("http://localhost:8080")
     mlflow.set_experiment("Embeddings Retrieval")

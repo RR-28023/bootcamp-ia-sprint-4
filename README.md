@@ -15,6 +15,8 @@ Juan José Rueda Mejía
   - [Instrucciones para crear el entorno y ejecutar el experimento base](#instrucciones-para-crear-el-entorno-y-ejecutar-el-experimento-base)
     - [Instalar conda (y Python)](#instalar-conda-y-python)
     - [Crea un fork del repositorio y crea un entorno conda para este repositorio](#crea-un-fork-del-repositorio-y-crea-un-entorno-conda-para-este-repositorio)
+    - [Abre el repositorio en tu IDE de preferencia](#abre-el-repositorio-en-tu-ide-de-preferencia)
+  - [Instala el entorno de Python](#instala-el-entorno-de-python)
     - [Actualiza variables de entorno con tus credenciales](#actualiza-variables-de-entorno-con-tus-credenciales)
     - [Descarga el dataset de evaluación](#descarga-el-dataset-de-evaluación)
     - [Lanzar el servidor de MLFlow](#lanzar-el-servidor-de-mlflow)
@@ -152,7 +154,8 @@ cambios en el código que genera el cache).
 ### Instalar conda (y Python)
 
 Si no tienes `conda` instalado, instala `miniconda` (una distribución de conda) siguiendo
-los pasos según tu sistema operativo [indicados en este link](https://docs.anaconda.com/free/miniconda/). 
+los pasos según tu sistema operativo indicados en la sección *Quick command line install* en 
+[este link](https://docs.anaconda.com/free/miniconda/#quick-command-line-install).
 
 Además esto instalará Python en tu equipo si no lo tienes.
 
@@ -166,9 +169,8 @@ la de VSCode.
 
 ### Crea un fork del repositorio y crea un entorno conda para este repositorio
 
-Cierra la terminal y abre otra (esto es importante para que tengan efecto los cambios tras instalar `conda`).
-
-Crea un fork del repositorio en tu equipo (si no sabes hacerlo, instrucciones [aquí](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)). 
+Crea un fork del repositorio bajo tu usuarop de github, y después clónalo en tu ordenador 
+(si no sabes hacerlo, instrucciones [aquí](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)). 
 
 Si ya tenías un fork del repositorio (como se pedía en el ejercicio de la semana pasada), tienes que hacer un `git pull` para tener la última versión del código. Hay varias formas de hacerlo, una de ellas es:
 
@@ -179,6 +181,15 @@ git fetch upstream
 git checkout main
 git pull upstream main
 ```
+
+### Abre el repositorio en tu IDE de preferencia
+
+Este paso no es imprescindible pero es altamente recomendable. Abre el repositrio desde una IDE 
+como VSCode (la que yo recomiendo) u otra con la que estés familiarizad@ (p.ej. PyCharm).
+
+## Instala el entorno de Python
+
+Cierra la terminal y abre otra (esto es importante para que tengan efecto los cambios tras instalar `conda`).
 
 Cambia a la carpeta donde has clonado este repositorio y ejecuta:
 
@@ -200,7 +211,8 @@ conda activate movies
 
 Nota para usuarios de **Windows**, dependiendo de vuestra versión, puede que la terminal no reconozca el comando `conda`. 
 En ese caso tenéis que ejecutar todos los comandos deste el `Anaconda Prompt Shell` (lo podéis encontrar buscando en el
-menú de inicio una vez instalado Anaconda)
+menú de inicio una vez instalado Anaconda).
+
 
 
 ### Actualiza variables de entorno con tus credenciales
