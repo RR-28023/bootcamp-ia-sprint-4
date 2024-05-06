@@ -5,6 +5,7 @@ import time
 from pathlib import Path
 from dotenv import load_dotenv
 import sys
+import requests
 load_dotenv()
 sys.path.append(os.getenv("PYTHONPATH"))
 
@@ -107,18 +108,15 @@ if __name__ == "__main__":
     )
     logger.addHandler(handler)
 
-    # Comprobamos que las variables de entorno se han cargado bien
-    rds_host = os.getenv("RDS_HOST", "")
-    if rds_host == "qualentum-movies.cacl8vunaq4c.eu-west-3.rds.amazonaws.com":
-        logger.info("Variables de entorno cargadas correctamente.")        
-    else:
-        logger.error("Las variables de entorno no están bien definidas o no se han cargado bien. Revisa el contenido"
-                     "y ubicación del fichero .env")
-        sys.exit(1)
-
-
     # Configuramos mlflow
     mlflow.set_tracking_uri("http://localhost:8080")
+    # Check that there is a running tracking server on the given URI
+    try:
+        response = requests.get("http://localhost:8080/experiments/list")
+    except requests.exceptions.ConnectionError:
+        logger.error("No se ha podido conectar con el servidor de mlflow. ¿Está arrancado?")
+        sys.exit(1)
+
     mlflow.set_experiment("Embeddings Retrieval")
 
     with mlflow.start_run():
@@ -130,7 +128,9 @@ if __name__ == "__main__":
         # Generamos el índice (sólo si no se ha generado uno ya con la misma configuracion)
         if not (CACHE_PATH / f"faiss_{exp_config.index_config_unique_id}").exists():
             t_elapsed = generate_index_pipeline(exp_config, logger)
-            mlflow.log_metric("index_gen_minutes", round(t_elapsed/60,1))
+            # Save the metric in the cache
+            with open(CACHE_PATH / f"time_elapsed_{exp_config.index_config_unique_id}.txt", "w") as f:
+                f.write(str(t_elapsed))
 
         # Evaluamos el pipeline de generación de índice y el de retrieval
         eval_queries = load_eval_queries()
@@ -143,6 +143,8 @@ if __name__ == "__main__":
             embeddings=embedder,
             allow_dangerous_deserialization=True,
         )
+        index_gen_mins = float(open(CACHE_PATH / f"time_elapsed_{exp_config.index_config_unique_id}.txt").read())
+        mlflow.log_metric("index_gen_minutes", round(t_elapsed/60,1))
 
         # Comenzamos el loop de evaluación
         mean_mrr, perc_in_top_10, n, accum_time = 0.0, 0.0, 0, 0.0
