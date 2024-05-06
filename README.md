@@ -11,8 +11,7 @@
     - [Crea un fork del repositorio y crea un entorno conda para este repositorio](#crea-un-fork-del-repositorio-y-crea-un-entorno-conda-para-este-repositorio)
     - [Abre el repositorio en tu IDE de preferencia](#abre-el-repositorio-en-tu-ide-de-preferencia)
   - [Instala el entorno de Python](#instala-el-entorno-de-python)
-    - [Actualiza variables de entorno con tus credenciales](#actualiza-variables-de-entorno-con-tus-credenciales)
-    - [Descarga el dataset de evaluación](#descarga-el-dataset-de-evaluación)
+    - [Descarga los datos necesarios](#descarga-los-datos-necesarios)
     - [Lanzar el servidor de MLFlow](#lanzar-el-servidor-de-mlflow)
     - [Lanza el experimento configurado por defecto](#lanza-el-experimento-configurado-por-defecto)
 
@@ -40,7 +39,7 @@ Nuestro módulo de retrieval se encarga de encontrar las películas que más se 
 
 ## Datos
 
-Usaremos una base de datos con información de 6,521 películas almacenadas en PostgreSQL. Toda la información que tenemos
+Usaremos una base de datos con información de 6,521 películas. Toda la información que tenemos
 de cada película se carga en nuestro código como un objeto de la clase `Movie`, siempre con los mismos atributos. Por ejemplo:
 
 ```python
@@ -61,6 +60,7 @@ Movie(
 )
 ```
 
+Ver sección [Descarga los datos necesarios](#descarga-los-datos-necesarios) para obtener el link de descarga.
 
 ## Evaluación del sistema
 
@@ -71,8 +71,7 @@ Hemos creado un dataset con 300 ejemplos de *query* y película que debería rec
 * `secs_per_query`: El tiempo medio que tarda el sistema en recuperar las 10 películas más simialres a una *query* dada
 * `index_gen_time`: El tiempo que tarda el sistema en generar los embeddings para todas las películas
 
-El dataset se puede descargar de [este link](https://grupovass-my.sharepoint.com/:u:/g/personal/gabriel_munozr_intelygenz_com/EV0xH27mzcZLgA8Hnr9wdGoBJxZ9eBzELasvfkox5Q9qDQ?e=OSdQHm) y deberá guardarse en `/bootcamp-ia-sprint-4/retrieval/evaluation/data/eval_queries.json`
-
+Ver sección [Descarga los datos necesarios](#descarga-los-datos-necesarios) para obtener el link de descarga.
 
 ## Ejercicio
 
@@ -208,24 +207,11 @@ En ese caso tenéis que ejecutar todos los comandos deste el `Anaconda Prompt Sh
 menú de inicio una vez instalado Anaconda).
 
 
+### Descarga los datos necesarios
 
-### Actualiza variables de entorno con tus credenciales
+1. Descarga la información de las películas de [este link](https://grupovass-my.sharepoint.com/:u:/g/personal/gabriel_munozr_intelygenz_com/ESzzhc5BUZ9KpAZ5F28jiGYB9l-NzIfGIXNfkGdPjXFwag?e=fPCJ1a) y guárdalo en `path/en/tu/equipo/bootcamp-ia-sprint-4/retrieval/data/movies_data.json` 
 
-Crea un archivo `.env` en `path/en/tu/equipo/bootcamp-ia-sprint-4/.env` con el siguiente contenido (sustituyendo donde corresponda):
-
-```
-RDS_HOST=qualentum-movies.cacl8vunaq4c.eu-west-3.rds.amazonaws.com
-RDS_USER=<añade aquí tu usuario>
-RDS_PW=<añade tu contraseña>
-RDS_DB=postgres
-PYTHONPATH=path/en/tu/equipo/bootcamp-ia-sprint-4
-```
-
-**IMPORTANTE!**: el archivo `.env` no se debe versionar ni subir a github nunca, ya que contiene credenciales privados.
-
-### Descarga el dataset de evaluación
-
-Descarga el dataset de evaluación de [este link](https://grupovass-my.sharepoint.com/:u:/g/personal/gabriel_munozr_intelygenz_com/EV0xH27mzcZLgA8Hnr9wdGoBJxZ9eBzELasvfkox5Q9qDQ?e=OSdQHm) y guárdalo en `path/en/tu/equipo/bootcamp-ia-sprint-4/retrieval/evaluation/data/eval_queries.json`
+2. Descarga el dataset de evaluación de [este link](https://grupovass-my.sharepoint.com/:u:/g/personal/gabriel_munozr_intelygenz_com/EV0xH27mzcZLgA8Hnr9wdGoBJxZ9eBzELasvfkox5Q9qDQ?e=3U1n5m) y guárdalo en `path/en/tu/equipo/bootcamp-ia-sprint-4/retrieval/data/eval_queries.json`
 
 
 ### Lanzar el servidor de MLFlow
