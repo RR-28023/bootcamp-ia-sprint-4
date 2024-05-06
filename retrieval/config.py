@@ -38,7 +38,8 @@ class RetrievalExpsConfig:
 
     @property
     def index_config_unique_id(self) -> str:
-        return f"{self.model_name}_{self._text_to_embed_fn.__name__}_{self.normalize_embeddings}"
+        mname = self.model_name.replace("/", "_")
+        return f"{mname}_{self._text_to_embed_fn.__name__}_{self.normalize_embeddings}"
 
     @property
     def exp_params(self) -> dict:

@@ -1,13 +1,12 @@
-import gc
 import logging
 import os
 import time
 from pathlib import Path
-from dotenv import load_dotenv
 import sys
 import requests
-load_dotenv()
-sys.path.append(os.getenv("PYTHONPATH"))
+
+# Append the workspace's root directory to the sys.path
+sys.path.append(str(Path(__file__).parent.parent))
 
 import colorlog
 import mlflow
@@ -112,7 +111,7 @@ if __name__ == "__main__":
     mlflow.set_tracking_uri("http://localhost:8080")
     # Check that there is a running tracking server on the given URI
     try:
-        response = requests.get("http://localhost:8080/experiments/list")
+        response = requests.get("http://localhost:8080")
     except requests.exceptions.ConnectionError:
         logger.error("No se ha podido conectar con el servidor de mlflow. ¿Está arrancado?")
         sys.exit(1)
@@ -143,8 +142,8 @@ if __name__ == "__main__":
             embeddings=embedder,
             allow_dangerous_deserialization=True,
         )
-        index_gen_mins = float(open(CACHE_PATH / f"time_elapsed_{exp_config.index_config_unique_id}.txt").read())
-        mlflow.log_metric("index_gen_minutes", round(t_elapsed/60,1))
+        index_gen_secs = float(open(CACHE_PATH / f"time_elapsed_{exp_config.index_config_unique_id}.txt").read())
+        mlflow.log_metric("index_gen_minutes", round(index_gen_secs/60,1))
 
         # Comenzamos el loop de evaluación
         mean_mrr, perc_in_top_10, n, accum_time = 0.0, 0.0, 0, 0.0
