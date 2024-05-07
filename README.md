@@ -7,9 +7,9 @@
   - [Ejercicio](#ejercicio)
   - [Notas importantes (!!)](#notas-importantes-)
   - [Instrucciones para crear el entorno y ejecutar el experimento base](#instrucciones-para-crear-el-entorno-y-ejecutar-el-experimento-base)
-    - [Instalar conda (y Python)](#instalar-conda-y-python)
     - [Instalar git](#instalar-git)
     - [Crea un fork del repositorio y clona el repositorio en tu ordendador.](#crea-un-fork-del-repositorio-y-clona-el-repositorio-en-tu-ordendador)
+    - [Instalar conda (y Python)](#instalar-conda-y-python)
     - [Abre el repositorio en tu IDE de preferencia](#abre-el-repositorio-en-tu-ide-de-preferencia)
     - [Instala el entorno de Python](#instala-el-entorno-de-python)
     - [Descarga los datos necesarios](#descarga-los-datos-necesarios)
@@ -145,6 +145,21 @@ cambios en el código que genera el cache).
 
 ## Instrucciones para crear el entorno y ejecutar el experimento base
 
+### Instalar git
+
+Los usuarios de Linux y Mac ya deberían tener `git` instalado de fábrica (lo podéis comprobar ejecutando `git --version`
+en la consola). Si no tienes git instalado, puedes hacerlo siguiendo los pasos 
+de [este link](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+
+### Crea un fork del repositorio y clona el repositorio en tu ordendador.
+
+Crea un fork del repositorio bajo tu usuario de github, y después clónalo en tu ordenador 
+(si no sabes hacerlo, instrucciones [aquí](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)). 
+
+**Nota!**: Para evitar problemas con una de las librerías que usamos en el ejercicio (FAISS), debido a este [issue](https://github.com/facebookresearch/faiss/issues/3073),
+en Windows no podéis clonar el repositorio en un path que contenga la "ñ" o acentos, por ejemplo, este path **NO VALDRÍA**: `C:/Users/Desktop/04_Diseño_y_Estrategias_en_Producción_para_Soluciones_de_IA/bootcamp-ia-sprint-4` 
+
+
 ### Instalar conda (y Python)
 
 Si no tienes `conda` instalado, instala `miniconda` (una distribución de conda) siguiendo
@@ -161,27 +176,14 @@ la de VSCode.
     <img src="docs/miniconda_windows.jpeg" alt="alt text" width="400">
 </p>
 
-### Instalar git
-
-Los usuarios de Linux y Mac ya deberían tener `git` instalado de fábrica (lo podéis comprobar ejecutando `git --version`
-en la consola). Si no tienes git instalado, puedes hacerlo siguiendo los pasos 
-de [este link](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
-
-### Crea un fork del repositorio y clona el repositorio en tu ordendador.
-
-Crea un fork del repositorio bajo tu usuario de github, y después clónalo en tu ordenador 
-(si no sabes hacerlo, instrucciones [aquí](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)). 
-
-**Nota!**: Para evitar problemas con una de las librerías que usamos en el ejercicio (FAISS), debido a este [issue](https://github.com/facebookresearch/faiss/issues/3073),
-en Windows no podéis clonar el repositorio en un path que contenga la "ñ" o acentos, por ejemplo, este path **NO VALDRÍA**: `C:/Users/Desktop/04_Diseño_y_Estrategias_en_Producción_para_Soluciones_de_IA/bootcamp-ia-sprint-4` 
-
-
 ### Abre el repositorio en tu IDE de preferencia
 
 Este paso no es imprescindible pero es altamente recomendable. Abre el repositrio desde una IDE 
 como VSCode (la que yo recomiendo) u otra con la que estés familiarizad@ (p.ej. PyCharm).
 
 ### Instala el entorno de Python
+
+(estos pasos los puedes hacer desde la propia terminal de VSCode)
 
 Cierra la terminal y abre otra (esto es importante para que tengan efecto los cambios tras instalar `conda`).
 
