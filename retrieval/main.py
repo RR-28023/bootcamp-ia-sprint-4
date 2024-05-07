@@ -42,6 +42,7 @@ def load_embedder(config: RetrievalExpsConfig) -> HuggingFaceEmbeddings:
 
 # He hecho estos cambios
 print("Hola!!!")
+print("Qué tal?")
 
 
 def generate_index_pipeline(config: RetrievalExpsConfig, logger: logging.Logger) -> float:
