@@ -1,13 +1,12 @@
 # %%
 import sys
-from dotenv import load_dotenv
 import os
 import logging
 from pathlib import Path
-load_dotenv()
-sys.path.append(os.getenv("PYTHONPATH"))
+root_dir = Path(__file__).parent.parent
+sys.path.append(str(root_dir))
 # Set current working directory to the root of the project
-os.chdir(Path(__file__).parents[2])
+os.chdir(root_dir)
 from retrieval.main import *
 CACHE_PATH = Path(__file__).parents[1] / ".cache"
 # %%
