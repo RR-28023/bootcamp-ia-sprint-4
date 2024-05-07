@@ -8,9 +8,10 @@
   - [Notas importantes (!!)](#notas-importantes-)
   - [Instrucciones para crear el entorno y ejecutar el experimento base](#instrucciones-para-crear-el-entorno-y-ejecutar-el-experimento-base)
     - [Instalar conda (y Python)](#instalar-conda-y-python)
-    - [Crea un fork del repositorio y crea un entorno conda para este repositorio](#crea-un-fork-del-repositorio-y-crea-un-entorno-conda-para-este-repositorio)
+    - [Instalar git](#instalar-git)
+    - [Crea un fork del repositorio y clona el repositorio en tu ordendador.](#crea-un-fork-del-repositorio-y-clona-el-repositorio-en-tu-ordendador)
     - [Abre el repositorio en tu IDE de preferencia](#abre-el-repositorio-en-tu-ide-de-preferencia)
-  - [Instala el entorno de Python](#instala-el-entorno-de-python)
+    - [Instala el entorno de Python](#instala-el-entorno-de-python)
     - [Descarga los datos necesarios](#descarga-los-datos-necesarios)
     - [Lanzar el servidor de MLFlow](#lanzar-el-servidor-de-mlflow)
     - [Lanza el experimento configurado por defecto](#lanza-el-experimento-configurado-por-defecto)
@@ -160,27 +161,27 @@ la de VSCode.
     <img src="docs/miniconda_windows.jpeg" alt="alt text" width="400">
 </p>
 
-### Crea un fork del repositorio y crea un entorno conda para este repositorio
+### Instalar git
 
-Crea un fork del repositorio bajo tu usuarop de github, y después clónalo en tu ordenador 
+Los usuarios de Linux y Mac ya deberían tener `git` instalado de fábrica (lo podéis comprobar ejecutando `git --version`
+en la consola). Si no tienes git instalado, puedes hacerlo siguiendo los pasos 
+de [este link](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+
+### Crea un fork del repositorio y clona el repositorio en tu ordendador.
+
+Crea un fork del repositorio bajo tu usuario de github, y después clónalo en tu ordenador 
 (si no sabes hacerlo, instrucciones [aquí](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)). 
 
-Si ya tenías un fork del repositorio (como se pedía en el ejercicio de la semana pasada), tienes que hacer un `git pull` para tener la última versión del código. Hay varias formas de hacerlo, una de ellas es:
+**Nota!**: Para evitar problemas con una de las librerías que usamos en el ejercicio (FAISS), debido a este [issue](https://github.com/facebookresearch/faiss/issues/3073),
+en Windows no podéis clonar el repositorio en un path que contenga la "ñ" o acentos, por ejemplo, este path **NO VALDRÍA**: `C:/Users/Desktop/04_Diseño_y_Estrategias_en_Producción_para_Soluciones_de_IA/bootcamp-ia-sprint-4` 
 
-```bash
-path/en/tu/equipo/bootcamp-ia-sprint-4$ 
-git remote add upstream https://github.com/RR-28023/bootcamp-ia-sprint-4.git
-git fetch upstream
-git checkout main
-git pull upstream main
-```
 
 ### Abre el repositorio en tu IDE de preferencia
 
 Este paso no es imprescindible pero es altamente recomendable. Abre el repositrio desde una IDE 
 como VSCode (la que yo recomiendo) u otra con la que estés familiarizad@ (p.ej. PyCharm).
 
-## Instala el entorno de Python
+### Instala el entorno de Python
 
 Cierra la terminal y abre otra (esto es importante para que tengan efecto los cambios tras instalar `conda`).
 
