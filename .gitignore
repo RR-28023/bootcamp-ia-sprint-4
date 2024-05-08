@@ -1,6 +1,6 @@
 mlruns
 .env
-.vscode
+.vscode/settings.json
 __pycache__
 **/data/**
 *.faiss
