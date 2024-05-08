@@ -3,7 +3,7 @@ import sys
 import os
 import logging
 from pathlib import Path
-root_dir = Path(__file__).parent.parent
+root_dir = Path(__file__).parents[2]
 sys.path.append(str(root_dir))
 # Set current working directory to the root of the project
 os.chdir(root_dir)
@@ -12,6 +12,9 @@ CACHE_PATH = Path(__file__).parents[1] / ".cache"
 # %%
 # Generamos los embeddings
 movies = get_movies_data()
+
+#%%
+
 exp_config = RetrievalExpsConfig()
 logger = logging.getLogger("retrieval")
 if not (CACHE_PATH / f"faiss_{exp_config.index_config_unique_id}").exists():
