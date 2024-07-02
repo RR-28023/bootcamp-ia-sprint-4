@@ -40,11 +40,14 @@ def load_embedder(config: RetrievalExpsConfig) -> HuggingFaceEmbeddings:
     )
     return embedder
 
+# Cambios realizados
+print('Prueba de cambios')
+
 
 def generate_index_pipeline(config: RetrievalExpsConfig, logger: logging.Logger) -> float:
     """
     Pipeline para generar y guardar el índice con los detalles de las películas. Devuelve el tiempo que ha tardado en
-    generar el índice (p.ej. para logearlo en mlflow)
+    generar el índice (p.ej. para registrarlo en mlflow)
     """
     logger.info("Cargando los datos de las películas...")
     movies = get_movies_data()
