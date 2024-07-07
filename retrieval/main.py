@@ -40,6 +40,7 @@ def load_embedder(config: RetrievalExpsConfig) -> HuggingFaceEmbeddings:
     )
     return embedder
 
+# Comentario para hacer un cambio de prueba
 
 def generate_index_pipeline(config: RetrievalExpsConfig, logger: logging.Logger) -> float:
     """
