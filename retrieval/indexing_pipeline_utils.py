@@ -28,3 +28,9 @@ def get_synopsys_txt(movie: Movie) -> str:
     return movie.synopsis
 
 # def ...
+
+def get_title_and_genre_txt(movie: Movie) -> str:
+    return f"Título: {movie.title_es}. Géneros: {movie.genre_tags}."
+
+def get_director_and_cast_txt(movie: Movie) -> str:
+    return f"Director: {movie.director_top_5}. Elenco: {movie.cast_top_5}."

@@ -7,6 +7,17 @@ from retrieval.indexing_pipeline_utils import get_synopsys_txt
 from retrieval.retrieval_pipeline_utils import clean_query_txt
 
 
+from retrieval.indexing_pipeline_utils import (
+    get_synopsys_txt,
+    get_title_and_genre_txt,
+    get_director_and_cast_txt
+)
+from retrieval.retrieval_pipeline_utils import (
+    clean_query_txt,
+    preprocess_query_no_el_usuario,
+    preprocess_query_lowercase
+)
+
 class RetrievalExpsConfig:
     """
     Class to keep track of all the parameters used in the embeddings experiments.
@@ -18,14 +29,9 @@ class RetrievalExpsConfig:
 
     def __init__(self):
 
-        # Función a emplear para generar el texto a indexar con embeddings; Debe tomar como input un objeto `Movie` y devolver un string
         self._text_to_embed_fn: Callable = get_synopsys_txt
-
-        # Parámetros para la generación de embeddings
-
         self.model_name: str = "all-MiniLM-L6-v2"
-        self.normalize_embeddings: bool = False  # Normalizar los embeddings a longitud 1 antes de indexarlos
-
+        self.normalize_embeddings: bool = False
         self._query_prepro_fn: Callable = clean_query_txt
 
     ## NO MODIFICAR A PARTIR DE AQUÍ ##
