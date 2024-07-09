@@ -28,4 +28,4 @@ def get_synopsys_txt(movie: Movie) -> str:
     return movie.synopsis
 
 def get_synopsys_genre_txt(movie: Movie) -> str:
-    return f'{movie.title_es}. Género: {movie.genre_tags}.'
+    return f'{movie.synopsis}; {movie.genre_tags}.'
