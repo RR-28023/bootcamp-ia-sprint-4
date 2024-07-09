@@ -5,7 +5,8 @@ from typing import Callable
 from data_utils import Movie
 from retrieval.indexing_pipeline_utils import get_synopsys_txt
 from retrieval.retrieval_pipeline_utils import clean_query_txt
-
+from retrieval.indexing_pipeline_utils import combined_text
+from retrieval.retrieval_pipeline_utils import advanced_clean_query_txt
 
 from retrieval.indexing_pipeline_utils import (
     get_synopsys_txt,
@@ -29,10 +30,10 @@ class RetrievalExpsConfig:
 
     def __init__(self):
 
-        self._text_to_embed_fn: Callable = get_synopsys_txt
-        self.model_name: str = "all-MiniLM-L6-v2"
-        self.normalize_embeddings: bool = False
-        self._query_prepro_fn: Callable = clean_query_txt
+        self._text_to_embed_fn: Callable = combined_text
+        self.model_name: str = "all-MiniLM-L12-v2"
+        self.normalize_embeddings: bool = True
+        self._query_prepro_fn: Callable = advanced_clean_query_txt
 
     ## NO MODIFICAR A PARTIR DE AQUÍ ##
 

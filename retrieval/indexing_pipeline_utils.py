@@ -34,3 +34,22 @@ def get_title_and_genre_txt(movie: Movie) -> str:
 
 def get_director_and_cast_txt(movie: Movie) -> str:
     return f"Director: {movie.director_top_5}. Elenco: {movie.cast_top_5}."
+
+def combined_text(movie: Movie) -> str:
+    """
+    Combina varios atributos de la película para generar un texto más completo.
+    """
+    attributes = [
+        movie.title_es,
+        movie.title_original,
+        f"Duración: {movie.duration_mins} minutos",
+        f"Año: {movie.year}",
+        f"País: {movie.country}",
+        f"Géneros: {movie.genre_tags}",
+        f"Director: {movie.director_top_5}",
+        f"Guionistas: {movie.script_top_5}",
+        f"Reparto: {movie.cast_top_5}",
+        f"Fotografía: {movie.photography_top_5}",
+        movie.synopsis,
+    ]
+    return " | ".join(attributes)
