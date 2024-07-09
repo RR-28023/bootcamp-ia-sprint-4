@@ -19,7 +19,8 @@ class RetrievalExpsConfig:
     def __init__(self):
 
         # Función a emplear para generar el texto a indexar con embeddings; Debe tomar como input un objeto `Movie` y devolver un string
-        self._text_to_embed_fn: Callable = get_synopsys_txt
+        # self._text_to_embed_fn: Callable = get_synopsys_txt
+        self._text_to_embed_fn: Callable = get_synopsys_genre_txt
 
         # Parámetros para la generación de embeddings
 
