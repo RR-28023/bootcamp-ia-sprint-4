@@ -23,3 +23,13 @@ def advanced_clean_query_txt(query: str) -> str:
     # Remover acentos
     query = unidecode(query)
     return query
+
+def advanced_clean_query_txt2(query: str) -> str:
+    import re
+    from unidecode import unidecode
+
+    query = query.replace("El usuario busca ", "").strip()
+    query = re.sub(r"[^a-zA-Z0-9\s]", "", query)
+    query = query.lower()
+    query = unidecode(query)
+    return query

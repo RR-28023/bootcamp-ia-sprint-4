@@ -53,3 +53,6 @@ def combined_text(movie: Movie) -> str:
         movie.synopsis,
     ]
     return " | ".join(attributes)
+
+def get_detailed_txt(movie: Movie) -> str:
+    return f"{movie.synopsis} Género: {movie.genre_tags}. Actores: {movie.cast_top_5}."
