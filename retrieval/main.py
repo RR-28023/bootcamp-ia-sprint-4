@@ -108,10 +108,12 @@ if __name__ == "__main__":
     logger.addHandler(handler)
 
     # Configuramos mlflow
-    mlflow.set_tracking_uri("http://localhost:8080")
+    # Le cambio el puerto porque el 8080 no funciona
+    mlflow.set_tracking_uri("http://localhost:8081")
     # Check that there is a running tracking server on the given URI
     try:
-        response = requests.get("http://localhost:8080")
+        # Le cambio el puerto porque el 8080 no funciona
+        response = requests.get("http://localhost:8081")
     except requests.exceptions.ConnectionError:
         logger.error("No se ha podido conectar con el servidor de mlflow. ¿Está arrancado?")
         sys.exit(1)
