@@ -5,7 +5,10 @@ from typing import Callable
 from data_utils import Movie
 from retrieval.indexing_pipeline_utils import get_synopsys_txt
 from retrieval.indexing_pipeline_utils import get_synopsys_genre_txt
+from retrieval.indexing_pipeline_utils import get_synopsys_genre_2_txt
 from retrieval.retrieval_pipeline_utils import clean_query_txt
+from retrieval.retrieval_pipeline_utils import clean_query_2_txt
+
 
 
 class RetrievalExpsConfig:
@@ -21,16 +24,19 @@ class RetrievalExpsConfig:
 
         # Función a emplear para generar el texto a indexar con embeddings; Debe tomar como input un objeto `Movie` y devolver un string
         #self._text_to_embed_fn: Callable = get_synopsys_txt
-        self._text_to_embed_fn: Callable = get_synopsys_genre_txt
-
+        #self._text_to_embed_fn: Callable = get_synopsys_genre_txt
+        self._text_to_embed_fn: Callable = get_synopsys_genre_2_txt
         # Parámetros para la generación de embeddings
 
         #self.model_name: str = "all-MiniLM-L6-v2"
-        self.model_name: str = "all-mpnet-base-v2"
-
+        #self.model_name: str = "all-mpnet-base-v2"
+        #self.model_name: str = "BAAI/bge-small-en"
+        #self.model_name: str = "paraphrase-multilingual-MiniLM-L12-v2"
+        self.model_name: str = "hiiamsid/sentence_similarity_spanish_es"
         self.normalize_embeddings: bool = False  # Normalizar los embeddings a longitud 1 antes de indexarlos
 
-        self._query_prepro_fn: Callable = clean_query_txt
+        #self._query_prepro_fn: Callable = clean_query_txt
+        self._query_prepro_fn: Callable = clean_query_2_txt
 
     ## NO MODIFICAR A PARTIR DE AQUÍ ##
 

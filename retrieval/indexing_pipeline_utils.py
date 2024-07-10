@@ -30,4 +30,22 @@ def get_synopsys_txt(movie: Movie) -> str:
 # def ...
 
 def get_synopsys_genre_txt(movie: Movie) -> str:
-    return movie.genre_tags + movie.synopsis
+
+    prompt = movie.genre_tags.lower() + " en el que " + movie.synopsis
+    prompt = prompt.replace("(FILMAFFINITY)", "").strip()
+
+    return prompt
+
+def get_synopsys_genre_2_txt(movie: Movie) -> str:
+
+    if ';' in movie.genre_tags:
+        movie_genre = movie.genre_tags.split(';', 1)[0]
+        movie_genre_1 = movie.genre_tags.split(';', 1)[1]
+    else:
+        movie_genre = movie.genre_tags
+        movie_genre_1 = ""
+
+    prompt = movie_genre + " " + movie_genre_1 + " en el que " + movie.synopsis
+    prompt = prompt.replace("(FILMAFFINITY)", "").strip()
+
+    return prompt
