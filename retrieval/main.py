@@ -26,6 +26,7 @@ from retrieval.evaluation import (
 )
 from retrieval.indexing_pipeline_utils import create_docs_to_embedd
 
+
 CACHE_PATH = Path(__file__).parent / ".cache"
 
 
@@ -62,6 +63,8 @@ def generate_index_pipeline(config: RetrievalExpsConfig, logger: logging.Logger)
     t0 = time.time()
     embedder = load_embedder(config)
     movie_ids = [doc.metadata["movie_id"] for doc in movies_as_docs]
+    tokenizer = embedder.client.tokenizer
+    tokenizer.pad_token = tokenizer.eos_token
     index = FAISS.from_documents(movies_as_docs, embedder, ids=movie_ids)
 
     # Guardamos el índice en local
@@ -136,6 +139,8 @@ if __name__ == "__main__":
         logger.info(f"Evaluando el modelo de retieval con {len(eval_queries):,} queries...")
         logger.info(f"Cargando el índice con los embeddings..")
         embedder = load_embedder(exp_config)
+        tokenizer = embedder.client.tokenizer
+        tokenizer.pad_token = tokenizer.eos_token
         embedder.show_progress = False
         index = FAISS.load_local(
             CACHE_PATH / f"faiss_{exp_config.index_config_unique_id}",
