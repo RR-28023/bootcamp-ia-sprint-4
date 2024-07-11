@@ -52,6 +52,25 @@ def get_synopsys_txt_clean(movie: Movie) -> str:
     texto += f" y sinopsis: {clean_txt(movie.synopsis)}"
     return texto
 
+def get_data_movie_txt_clean(movie: Movie) -> str:
+    texto = ""
+
+    if(movie.tv_show_flag):
+        texto += "La serie "
+    else:
+        texto += "La película "
+
+    texto += movie.title_es
+
+    texto += f" relacionada con los géneros {movie.genre_tags.replace(';', ',')}"
+    texto += f" y sinopsis: {movie.synopsis}"
+
+    texto_clean = clean_txt(texto)
+
+    return texto_clean
+
+
+
 def clean_txt(movie_property: str) -> str:
     clean_property = movie_property.lower()
     clean_property = re.sub(r'[^a-záéíóúñ\s]', '', clean_property)
