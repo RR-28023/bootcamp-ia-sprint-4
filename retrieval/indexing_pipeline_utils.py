@@ -2,6 +2,10 @@ from __future__ import annotations
 
 from langchain_core.documents import Document
 
+import re
+import nltk
+from nltk.corpus import stopwords
+
 from data_utils import Movie
 from retrieval import config
 
@@ -35,5 +39,29 @@ def get_synopsys_txt(movie: Movie) -> str:
     texto += f" relacionada con los géneros {movie.genre_tags}"
     texto += f" tiene por sinopsis: {movie.synopsis}"
     return texto
+
+def get_synopsys_txt_clean(movie: Movie) -> str:
+    texto = ""
+
+    if(movie.tv_show_flag):
+        texto += "La serie"
+    else:
+        texto += "La película"
+
+    texto += f" con los géneros {movie.genre_tags.replace(';', ',')}"
+    texto += f" y sinopsis: {clean_txt(movie.synopsis)}"
+    return texto
+
+def clean_txt(movie_property: str) -> str:
+    clean_property = movie_property.lower()
+    clean_property = re.sub(r'[^a-záéíóúñ\s]', '', clean_property)
+
+    tokens = nltk.word_tokenize(clean_property)
+    
+    spanish_stopwords = set(stopwords.words('spanish'))
+    tokens = [word for word in tokens if word not in spanish_stopwords]
+
+    return ' '.join(tokens)
+
 
 # def ...
