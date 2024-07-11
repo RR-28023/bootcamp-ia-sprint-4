@@ -3,9 +3,8 @@ from __future__ import annotations
 from typing import Callable
 
 from data_utils import Movie
-from retrieval.indexing_pipeline_utils import get_synopsys_txt
-from retrieval.retrieval_pipeline_utils import clean_query_txt
-
+from retrieval.indexing_pipeline_utils import get_synopsys_txt, get_synopsys_txt_v2, get_synopsys_txt_v3, get_synopsys_txt_v4, get_synopsys_txt_v5
+from retrieval.retrieval_pipeline_utils import clean_query_txt, clean_query_txt_v2, clean_query_txt_v3
 
 class RetrievalExpsConfig:
     """
@@ -19,14 +18,21 @@ class RetrievalExpsConfig:
     def __init__(self):
 
         # Función a emplear para generar el texto a indexar con embeddings; Debe tomar como input un objeto `Movie` y devolver un string
-        self._text_to_embed_fn: Callable = get_synopsys_txt
+        self._text_to_embed_fn: Callable = get_synopsys_txt_v4
 
         # Parámetros para la generación de embeddings
 
-        self.model_name: str = "all-MiniLM-L6-v2"
+        # self.model_name: str = "all-MiniLM-L6-v2"
+        # self.model_name: str = "paraphrase-multilingual-MiniLM-L12-v2"
+        # self.model_name: str = "intfloat/multilingual-e5-small"
+        # self.model_name: str = "distiluse-base-multilingual-cased-v2"
+        # self.model_name: str = "LaBSE"
+        # self.model_name: str = "intfloat/multilingual-e5-base"
+        # self.model_name: str = "paraphrase-multilingual-mpnet-base-v2"
+        self.model_name: str = "hiiamsid/sentence_similarity_spanish_es"
         self.normalize_embeddings: bool = False  # Normalizar los embeddings a longitud 1 antes de indexarlos
 
-        self._query_prepro_fn: Callable = clean_query_txt
+        self._query_prepro_fn: Callable = clean_query_txt_v3
 
     ## NO MODIFICAR A PARTIR DE AQUÍ ##
 

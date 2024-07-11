@@ -40,10 +40,6 @@ def load_embedder(config: RetrievalExpsConfig) -> HuggingFaceEmbeddings:
     )
     return embedder
 
-# Cambios realizados
-print('Prueba de cambios')
-print('Prueba completada')
-
 
 def generate_index_pipeline(config: RetrievalExpsConfig, logger: logging.Logger) -> float:
     """
