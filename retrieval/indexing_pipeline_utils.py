@@ -25,6 +25,15 @@ def create_docs_to_embedd(movies: list[Movie], config: config.RetrievalExpsConfi
 
 
 def get_synopsys_txt(movie: Movie) -> str:
-    return movie.synopsis
+    texto = ""
+
+    if(movie.tv_show_flag):
+        texto += "La serie"
+    else:
+        texto += "La película"
+
+    texto += f" relacionada con los géneros {movie.genre_tags}"
+    texto += f" tiene por sinopsis: {movie.synopsis}"
+    return texto
 
 # def ...

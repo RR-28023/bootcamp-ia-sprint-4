@@ -23,7 +23,7 @@ class RetrievalExpsConfig:
 
         # Parámetros para la generación de embeddings
 
-        self.model_name: str = "all-MiniLM-L6-v2"
+        self.model_name: str = "paraphrase-multilingual-MiniLM-L12-v2"
         self.normalize_embeddings: bool = False  # Normalizar los embeddings a longitud 1 antes de indexarlos
 
         self._query_prepro_fn: Callable = clean_query_txt
