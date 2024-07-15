@@ -27,4 +27,9 @@ def create_docs_to_embedd(movies: list[Movie], config: config.RetrievalExpsConfi
 def get_synopsys_txt(movie: Movie) -> str:
     return movie.synopsis
 
+def get_prompt2(movie: Movie) -> str:
+    prompt = f"Esta pelicula pertenece al género {movie.genre_tags}, es del año {movie.year} y su trama es: {movie.synopsis}"
+
+    return prompt
+
 # def ...
