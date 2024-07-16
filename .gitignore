@@ -1,9 +1,0 @@
-mlruns
-.env
-.vscode/settings.json
-__pycache__
-**/data/**
-*.faiss
-*.pkl
-*/.cache/*
-mlartifacts/*
