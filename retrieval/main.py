@@ -1,6 +1,7 @@
 import logging
 import os
 import time
+from datetime import datetime
 from pathlib import Path
 import sys
 import requests
@@ -25,6 +26,8 @@ from retrieval.evaluation import (
     plot_rank_distribution,
 )
 from retrieval.indexing_pipeline_utils import create_docs_to_embedd
+
+from retrieval.inference import (preprocesado, retrieval, postprocesado)
 
 
 CACHE_PATH = Path(__file__).parent / ".cache"
@@ -63,8 +66,6 @@ def generate_index_pipeline(config: RetrievalExpsConfig, logger: logging.Logger)
     t0 = time.time()
     embedder = load_embedder(config)
     movie_ids = [doc.metadata["movie_id"] for doc in movies_as_docs]
-    tokenizer = embedder.client.tokenizer
-    tokenizer.pad_token = tokenizer.eos_token
     index = FAISS.from_documents(movies_as_docs, embedder, ids=movie_ids)
 
     # Guardamos el índice en local
@@ -110,76 +111,107 @@ if __name__ == "__main__":
     )
     logger.addHandler(handler)
 
-    # Configuramos mlflow
-    mlflow.set_tracking_uri("http://localhost:8080")
-    # Check that there is a running tracking server on the given URI
-    try:
-        response = requests.get("http://localhost:8080")
-    except requests.exceptions.ConnectionError:
-        logger.error("No se ha podido conectar con el servidor de mlflow. ¿Está arrancado?")
-        sys.exit(1)
+    inference_mode = False
+    inference = input("Quiere realizar inferencia (i) o evaluación (e)? Responda i/e: ")
+    if inference.lower() == "i":
+        inference_mode=True
+    else:
+        inference_mode=False
 
-    mlflow.set_experiment("Embeddings Retrieval")
+    if inference_mode == False:
+        # Configuramos mlflow
+        mlflow.set_tracking_uri("http://localhost:8080")
+        # Check that there is a running tracking server on the given URI
+        try:
+            response = requests.get("http://localhost:8080")
+        except requests.exceptions.ConnectionError:
+            logger.error("No se ha podido conectar con el servidor de mlflow. ¿Está arrancado?")
+            sys.exit(1)
 
-    with mlflow.start_run():
+        mlflow.set_experiment("Embeddings Retrieval")
 
-        # Cargamos la configuración del experimento y logeamos a mlflow
+        with mlflow.start_run():
+
+            # Cargamos la configuración del experimento y logeamos a mlflow
+            exp_config = RetrievalExpsConfig()
+            mlflow.log_params(exp_config.exp_params)
+
+            # Generamos el índice (sólo si no se ha generado uno ya con la misma configuracion)
+            if not (CACHE_PATH / f"faiss_{exp_config.index_config_unique_id}").exists():
+                t_elapsed = generate_index_pipeline(exp_config, logger)
+                # Save the metric in the cache
+                with open(CACHE_PATH / f"time_elapsed_{exp_config.index_config_unique_id}.txt", "w") as f:
+                    f.write(str(t_elapsed))
+
+            # Evaluamos el pipeline de generación de índice y el de retrieval
+            eval_queries = load_eval_queries()
+            logger.info(f"Evaluando el modelo de retieval con {len(eval_queries):,} queries...")
+            logger.info(f"Cargando el índice con los embeddings..")
+            embedder = load_embedder(exp_config)
+            embedder.show_progress = False
+            index = FAISS.load_local(
+                CACHE_PATH / f"faiss_{exp_config.index_config_unique_id}",
+                embeddings=embedder,
+                allow_dangerous_deserialization=True,
+            )
+            index_gen_secs = float(open(CACHE_PATH / f"time_elapsed_{exp_config.index_config_unique_id}.txt").read())
+            mlflow.log_metric("index_gen_minutes", round(index_gen_secs/60,1))
+
+            # Comenzamos el loop de evaluación
+            mean_mrr, perc_in_top_10, n, accum_time = 0.0, 0.0, 0, 0.0
+            ranks = []
+            for query in tqdm(eval_queries):
+                query, expected_movie_id = query["query"], query["movie_id"]
+                retrieved_docs, t_elapsed = retrieval_pipeline(query, index, exp_config, logger)
+                accum_time += t_elapsed
+                retrieved_movies_ids = [doc.metadata["movie_id"] for doc in retrieved_docs]
+                mrr, rank = calc_mrr(expected_movie_id, retrieved_movies_ids)
+                ranks.append(rank)
+                in_top_10 = is_in_results(expected_movie_id, retrieved_movies_ids)
+                n += 1
+                mean_mrr = (mean_mrr * (n - 1) + mrr) / n
+                perc_in_top_10 = (perc_in_top_10 * (n - 1) + in_top_10) / n
+                if mrr == 0.0 and logger.level == logging.DEBUG:
+                    # Para debugear
+                    expected_movie_doc = index.docstore.search(expected_movie_id)
+                    debug_str = comparar_resultado_con_esperado(query, retrieved_docs[0], expected_movie_doc, exp_config)
+                    logger.debug(f"La peli buscada no estaba en las 10 recuperadas: {debug_str}")
+
+            logger.info(f"MRR@10: {mean_mrr:.3f}")
+            logger.info(
+                f"Porcentaje de queries en las que la peli buscada estaba en las 10 recuperadas: {perc_in_top_10:.1%}"
+            )
+            mlflow.log_metrics(
+                {
+                    "mean_mrr10": round(mean_mrr, 3),
+                    "perc_top_10": round(perc_in_top_10 * 100, 1),
+                    "secs_per_query": round(accum_time / n, 2),
+                }
+            )
+            ranks_fig = plot_rank_distribution(ranks)
+            mlflow.log_figure(ranks_fig, "rank_distribution.png")
+
+    else:
         exp_config = RetrievalExpsConfig()
-        mlflow.log_params(exp_config.exp_params)
-
-        # Generamos el índice (sólo si no se ha generado uno ya con la misma configuracion)
-        if not (CACHE_PATH / f"faiss_{exp_config.index_config_unique_id}").exists():
-            t_elapsed = generate_index_pipeline(exp_config, logger)
-            # Save the metric in the cache
-            with open(CACHE_PATH / f"time_elapsed_{exp_config.index_config_unique_id}.txt", "w") as f:
-                f.write(str(t_elapsed))
-
-        # Evaluamos el pipeline de generación de índice y el de retrieval
-        eval_queries = load_eval_queries()
-        logger.info(f"Evaluando el modelo de retieval con {len(eval_queries):,} queries...")
+        id_sesion = str(datetime.now())
+        user_queries = preprocesado()
         logger.info(f"Cargando el índice con los embeddings..")
         embedder = load_embedder(exp_config)
-        tokenizer = embedder.client.tokenizer
-        tokenizer.pad_token = tokenizer.eos_token
         embedder.show_progress = False
         index = FAISS.load_local(
             CACHE_PATH / f"faiss_{exp_config.index_config_unique_id}",
             embeddings=embedder,
             allow_dangerous_deserialization=True,
         )
-        index_gen_secs = float(open(CACHE_PATH / f"time_elapsed_{exp_config.index_config_unique_id}.txt").read())
-        mlflow.log_metric("index_gen_minutes", round(index_gen_secs/60,1))
-
-        # Comenzamos el loop de evaluación
-        mean_mrr, perc_in_top_10, n, accum_time = 0.0, 0.0, 0, 0.0
-        ranks = []
-        for query in tqdm(eval_queries):
-            query, expected_movie_id = query["query"], query["movie_id"]
-            retrieved_docs, t_elapsed = retrieval_pipeline(query, index, exp_config, logger)
-            accum_time += t_elapsed
-            retrieved_movies_ids = [doc.metadata["movie_id"] for doc in retrieved_docs]
-            mrr, rank = calc_mrr(expected_movie_id, retrieved_movies_ids)
-            ranks.append(rank)
-            in_top_10 = is_in_results(expected_movie_id, retrieved_movies_ids)
-            n += 1
-            mean_mrr = (mean_mrr * (n - 1) + mrr) / n
-            perc_in_top_10 = (perc_in_top_10 * (n - 1) + in_top_10) / n
-            if mrr == 0.0 and logger.level == logging.DEBUG:
-                # Para debugear
-                expected_movie_doc = index.docstore.search(expected_movie_id)
-                debug_str = comparar_resultado_con_esperado(query, retrieved_docs[0], expected_movie_doc, exp_config)
-                logger.debug(f"La peli buscada no estaba en las 10 recuperadas: {debug_str}")
-
-        logger.info(f"MRR@10: {mean_mrr:.3f}")
-        logger.info(
-            f"Porcentaje de queries en las que la peli buscada estaba en las 10 recuperadas: {perc_in_top_10:.1%}"
-        )
-        mlflow.log_metrics(
-            {
-                "mean_mrr10": round(mean_mrr, 3),
-                "perc_top_10": round(perc_in_top_10 * 100, 1),
-                "secs_per_query": round(accum_time / n, 2),
-            }
-        )
-        ranks_fig = plot_rank_distribution(ranks)
-        mlflow.log_figure(ranks_fig, "rank_distribution.png")
+        docs_for_user, t_elapsed = retrieval(user_queries, index, exp_config, logger)
+        retrieved_data_for_user ={}
+        for doc in docs_for_user:
+            retrieved_data_for_user[doc.metadata["movie_id"]] = {}
+            retrieved_data_for_user[doc.metadata["movie_id"]]["title_es"]=doc.metadata["title_es"]
+            retrieved_data_for_user[doc.metadata["movie_id"]]["country"]=doc.metadata["country"]
+            retrieved_data_for_user[doc.metadata["movie_id"]]["cast_top_5"]=doc.metadata["cast_top_5"]
+        
+        print(f"Le recomendamos estas películas:\n {retrieved_data_for_user}")
+        satisfaccion = input("Indique su grado de satisfacción, por favor, nos ayuda a mejorar. Puntúe del 0 al 10: ")
+        satisfaccion = int(satisfaccion)
+        postprocesado(retrieved_data_for_user, satisfaccion, user_queries, id_sesion)

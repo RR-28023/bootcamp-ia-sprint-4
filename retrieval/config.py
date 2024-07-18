@@ -23,7 +23,7 @@ class RetrievalExpsConfig:
 
         # Parámetros para la generación de embeddings
 
-        self.model_name: str = "nilq/mistral-1L-tiny" # mistralai/Mistral-7B-Instruct-v0.2 #all-MiniLM-L6-v2 , mistralai/Mistral-7B-v0.1, TheBloke/Mistral-7B-Instruct-v0.1-AWQ, dariolopez/roberta-base-bne-finetuned-msmarco-qa-es-mnrl-mn, sentence-transformers/paraphrase-multilingual-mpnet-base-v2
+        self.model_name: str = "all-MiniLM-L6-v2" # mistralai/Mistral-7B-Instruct-v0.2 #all-MiniLM-L6-v2 , mistralai/Mistral-7B-v0.1, TheBloke/Mistral-7B-Instruct-v0.1-AWQ, dariolopez/roberta-base-bne-finetuned-msmarco-qa-es-mnrl-mn, sentence-transformers/paraphrase-multilingual-mpnet-base-v2
         self.normalize_embeddings: bool = False  # Normalizar los embeddings a longitud 1 antes de indexarlos
 
         self._query_prepro_fn: Callable = clean_query_txt
