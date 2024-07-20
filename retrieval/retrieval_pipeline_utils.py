@@ -31,6 +31,7 @@ def lemmatize(query: str) -> str:
     return ' '.join(lemmatized_words)
 
 def clean_query_txt(query: str) -> str:
+    print(query)
     # Preprocesamiento avanzado de la consulta
     query = query.lower()
     query = remove_stopwords(query)

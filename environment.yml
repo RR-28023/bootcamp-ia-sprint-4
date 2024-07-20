@@ -45,9 +45,9 @@ dependencies:
   - brotli-python=1.0.9=py311ha362b79_9
   - bzip2=1.0.8=hd590300_5
   - c-ares=1.19.1=hd590300_0
-  - ca-certificates=2024.3.11=h06a4308_0
+  - ca-certificates=2024.7.2=h06a4308_0
   - celery=5.3.6=pyhd8ed1ab_0
-  - certifi=2024.2.2=pyhd8ed1ab_0
+  - certifi=2024.7.4=py311h06a4308_0
   - cffi=1.16.0=py311hb3a22ac_0
   - charset-normalizer=2.0.4=pyhd8ed1ab_0
   - click=8.1.7=unix_pyh707e725_0
@@ -166,6 +166,7 @@ dependencies:
   - mypy_extensions=1.0.0=pyha770c72_0
   - ncurses=6.4.20240210=h59595ed_0
   - nest-asyncio=1.6.0=pyhd8ed1ab_0
+  - nltk=3.8.1=py311h06a4308_0
   - numexpr=2.8.7=py311h65dcdc2_0
   - numpy=1.24.3=py311h08b1b3b_1
   - numpy-base=1.24.3=py311hf175353_1
@@ -203,6 +204,7 @@ dependencies:
   - pyopenssl=24.0.0=pyhd8ed1ab_0
   - pyparsing=3.0.9=pyhd8ed1ab_0
   - pysocks=1.7.1=pyha2e5f31_6
+  - pyspellchecker=0.8.0=pyhd8ed1ab_0
   - python=3.11.8=h955ad1f_0
   - python-dateutil=2.8.2=pyhd8ed1ab_0
   - python-tzdata=2023.3=pyhd8ed1ab_0
