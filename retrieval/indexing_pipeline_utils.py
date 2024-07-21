@@ -32,4 +32,13 @@ def get_prompt2(movie: Movie) -> str:
 
     return prompt
 
+def get_prompt3(movie: Movie) -> str:
+    prompt = (f"Esta película pertenece al género {movie.genre_tags}, "
+              f"es del año {movie.year}, "
+              f"y su trama es: {movie.synopsis}. "
+              f"Dirigida por: {movie.director_top_5}. "
+              f"Guionistas: {movie.script_top_5}. "
+              f"Protagonistas: {movie.cast_top_5}.")
+    return prompt
+
 # def ...

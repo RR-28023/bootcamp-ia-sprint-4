@@ -93,6 +93,11 @@ def retrieval_pipeline(
         logger.debug(f"{len(retrieved_docs)} recuperados en {t_elapsed:.0f} segundos.")
     return retrieved_docs, t_elapsed
 
+def find_movie_by_id(movies, target_id):
+    for movie in movies:
+        if movie.movie_id == target_id:
+            return movie
+    return None
 
 if __name__ == "__main__":
 
@@ -164,6 +169,12 @@ if __name__ == "__main__":
                 expected_movie_doc = index.docstore.search(expected_movie_id)
                 debug_str = comparar_resultado_con_esperado(query, retrieved_docs[0], expected_movie_doc, exp_config)
                 logger.debug(f"La peli buscada no estaba en las 10 recuperadas: {debug_str}")
+            
+            movies = get_movies_data()
+            movie = find_movie_by_id(movies, retrieved_movies_ids[0])
+            print('Pelicula mas recomendada')
+            print(movie.title_original)
+            print(movie.synopsis)
 
         logger.info(f"MRR@10: {mean_mrr:.3f}")
         logger.info(
