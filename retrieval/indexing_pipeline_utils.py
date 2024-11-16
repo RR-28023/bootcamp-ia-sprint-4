@@ -23,8 +23,9 @@ def create_docs_to_embedd(movies: list[Movie], config: config.RetrievalExpsConfi
 
 ## Posibles funciones para usar como `text_to_embed_fn` en `RetrievalExpsConfig` ##
 
-
+#funcion que se llama en config.py
 def get_synopsys_txt(movie: Movie) -> str:
     return movie.synopsis
 
-# def ...
+def get_movieData(movie: Movie) -> str:
+    return f"{movie.synopsis}; {' '.join(movie.genre_tags)}"

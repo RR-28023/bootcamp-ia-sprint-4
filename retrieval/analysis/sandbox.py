@@ -1,9 +1,10 @@
+# FICHERO PARA INTERACTUAR CON EL CODIGO
 # %%
 import sys
 import os
 import logging
 from pathlib import Path
-root_dir = Path(__file__).parent.parent
+root_dir = Path(__file__).parents[2]
 sys.path.append(str(root_dir))
 # Set current working directory to the root of the project
 os.chdir(root_dir)
@@ -29,16 +30,17 @@ eval_queries = load_eval_queries()
 
 #%%
 # Veamos qué tal funciona
-idx_ejemplo = 2
+idx_ejemplo = 16 #  16: 'JFK: Caso revisado'; 180: 'Un verano en Ibiza'; 233: 'La muerte de Stalin', 204: 'Anatomía de una caída',
 query = eval_queries[idx_ejemplo]
 query, expected_movie_id = query["query"], query["movie_id"]
 retrieved_docs, t_elapsed = retrieval_pipeline(query, index, exp_config, logger)
-
-# %%
 expected_movie_doc = index.docstore.search(expected_movie_id)
 expected_movie_doc.metadata
-# %%
-query
-# %%
-retrieved_docs[0].metadata
-# %%
+
+print(f"--- Query ---\n{query}\n")
+print(f"--- Movie that we expect to retrieve ---") 
+print("\n".join([f" · {k}: {v}" for k,v in expected_movie_doc.metadata.items()]))
+print(f"\n--- Retrieved movies ---")
+for i, doc in enumerate(retrieved_docs):
+    print(f"MOVIE {i+1}")
+    print("\n".join([f" · {k}: {v}" for k,v in doc.metadata.items()]))

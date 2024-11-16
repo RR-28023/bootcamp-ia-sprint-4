@@ -3,8 +3,9 @@ from __future__ import annotations
 from typing import Callable
 
 from data_utils import Movie
-from retrieval.indexing_pipeline_utils import get_synopsys_txt
-from retrieval.retrieval_pipeline_utils import clean_query_txt
+#añadir todas las funciones creadas
+from retrieval.indexing_pipeline_utils import get_synopsys_txt, get_movieData
+from retrieval.retrieval_pipeline_utils import clean_query_txt, mod_query
 
 
 class RetrievalExpsConfig:
@@ -21,12 +22,26 @@ class RetrievalExpsConfig:
         # Función a emplear para generar el texto a indexar con embeddings; Debe tomar como input un objeto `Movie` y devolver un string
         self._text_to_embed_fn: Callable = get_synopsys_txt
 
-        # Parámetros para la generación de embeddings
-
-        self.model_name: str = "all-MiniLM-L6-v2"
         self.normalize_embeddings: bool = False  # Normalizar los embeddings a longitud 1 antes de indexarlos
 
         self._query_prepro_fn: Callable = clean_query_txt
+
+        # Parámetros para la generación de embeddings
+
+        # Definición del modelo
+        # modelo empleado, se puede usar cualquiera de hugging face
+        #self.model_name: str = "all-MiniLM-L6-v2" #probado
+        #self.model_name: str = "all-mpnet-base-v2" # probado
+        #self.model_name: str = "all-distilroberta-v1" #probado
+        #self.model_name: str = "paraphrase-multilingual-mpnet-base-v2" #probado
+        #self.model_name: str = "multi-qa-mpnet-base-dot-v1" #probado
+        #self.model_name: str = "Shaharyar6/finetuned_sentence_similarity_spanish" #probado
+        #self.model_name: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2" #probado
+        #self.model_name: str = "hiiamsid/sentence_similarity_spanish_es" #probado
+        #self.model_name: str = "somosnlp-hackathon-2022/paraphrase-spanish-distilroberta"
+        #self.model_name: str = "prudant/lsg_4096_sentence_similarity_spanish"
+        self.model_name: str = "mrm8488/multilingual-e5-large-ft-sts-spanish-matryoshka-768-64-5e"
+      
 
     ## NO MODIFICAR A PARTIR DE AQUÍ ##
 
