@@ -30,7 +30,11 @@ eval_queries = load_eval_queries()
 
 #%%
 # Veamos qué tal funciona
+<<<<<<< HEAD
 idx_ejemplo = 16 #  16: 'JFK: Caso revisado'; 180: 'Un verano en Ibiza'; 233: 'La muerte de Stalin', 204: 'Anatomía de una caída',
+=======
+idx_ejemplo = 204 #  16: 'JFK: Caso revisado'; 180: 'Un verano en Ibiza'; 233: 'La muerte de Stalin', 204: 'Anatomía de una caída',
+>>>>>>> 7a3956c60bc82a83cd17fcaee0657dca8761549e
 query = eval_queries[idx_ejemplo]
 query, expected_movie_id = query["query"], query["movie_id"]
 retrieved_docs, t_elapsed = retrieval_pipeline(query, index, exp_config, logger)
@@ -43,4 +47,9 @@ print("\n".join([f" · {k}: {v}" for k,v in expected_movie_doc.metadata.items()]
 print(f"\n--- Retrieved movies ---")
 for i, doc in enumerate(retrieved_docs):
     print(f"MOVIE {i+1}")
+<<<<<<< HEAD
     print("\n".join([f" · {k}: {v}" for k,v in doc.metadata.items()]))
+=======
+    print("\n".join([f" · {k}: {v}" for k,v in doc.metadata.items()]))
+
+>>>>>>> 7a3956c60bc82a83cd17fcaee0657dca8761549e
