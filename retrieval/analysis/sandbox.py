@@ -1,4 +1,11 @@
 # FICHERO PARA INTERACTUAR CON EL CODIGO
+#COMANDOS PARA ACTIVAR
+# conda env create -f env_windows.yml
+# conda activate movies
+# mlflow server --host 127.0.0.1 --port 8080
+# python retrieval/main.py
+
+
 # %%
 import sys
 import os

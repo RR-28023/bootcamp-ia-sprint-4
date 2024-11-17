@@ -1,7 +1,7 @@
 # Pablo Salcedo
 
-# RDS_USER=alumno_qualentum
-# RDS_PW=a78dysdg919z
+- RDS_USER=alumno_qualentum
+- RDS_PW=a78dysdg919z
 
 # Ejercicio práctico sesión 2 - Desarrollo del módulo de *retrieval* de un sistema RAG
 

@@ -27,5 +27,5 @@ def create_docs_to_embedd(movies: list[Movie], config: config.RetrievalExpsConfi
 def get_synopsys_txt(movie: Movie) -> str:
     return movie.synopsis
 
-def get_movieData(movie: Movie) -> str:
+def getMovieData(movie: Movie) -> str:
     return f"{movie.synopsis}; {' '.join(movie.genre_tags)}"
