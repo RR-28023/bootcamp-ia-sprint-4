@@ -22,9 +22,18 @@ def create_docs_to_embedd(movies: list[Movie], config: config.RetrievalExpsConfi
 
 
 ## Posibles funciones para usar como `text_to_embed_fn` en `RetrievalExpsConfig` ##
+import re
+from sklearn.feature_extraction.text import TfidfVectorizer
 
-
+# Función para extraer información relevante como un string
 def get_synopsys_txt(movie: Movie) -> str:
-    return movie.synopsis
+    # Limpiar la sinopsis eliminando caracteres especiales y dejando texto relevante
+    synopsis_cleaned = re.sub(r'\s+', ' ', movie.synopsis.strip())  # Remueve espacios múltiples 
+    movie.genre_tags.lower()
 
-# def ...
+    # Generar texto enriquecido para embeddings
+    enriched_text = (
+        f"{movie.genre_tags.replace(";", " ").strip()}. {synopsis_cleaned}"
+    )
+    print(enriched_text)
+    return enriched_text
