@@ -30,8 +30,10 @@ CACHE_PATH = Path(__file__).parent / ".cache"
 
 
 def load_embedder(config: RetrievalExpsConfig) -> HuggingFaceEmbeddings:
+    """
+    Carga el modelo de embeddings configurado.
+    """
     encode_kwargs = {"normalize_embeddings": config.normalize_embeddings}
-    # Ver: https://api.python.langchain.com/en/latest/embeddings/langchain_community.embeddings.huggingface.HuggingFaceEmbeddings.html#langchain-community-embeddings-huggingface-huggingfaceembeddings
     embedder = HuggingFaceEmbeddings(
         model_name=config.model_name,
         multi_process=False,
@@ -39,6 +41,7 @@ def load_embedder(config: RetrievalExpsConfig) -> HuggingFaceEmbeddings:
         encode_kwargs=encode_kwargs,
     )
     return embedder
+
 
 
 def generate_index_pipeline(config: RetrievalExpsConfig, logger: logging.Logger) -> float:
