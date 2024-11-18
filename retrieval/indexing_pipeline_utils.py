@@ -27,4 +27,6 @@ def create_docs_to_embedd(movies: list[Movie], config: config.RetrievalExpsConfi
 def get_synopsys_txt(movie: Movie) -> str:
     return movie.synopsis
 
-# def ...
+def get_clean_movie_info(movie: Movie) -> str:
+    clean_synopsis = movie.synopsis.replace("(FILMAFFINITY)", "")
+    return f"{movie.title_es}; {clean_synopsis}; {movie.genre_tags}" 
