@@ -7,10 +7,7 @@ from retrieval import config
 
 
 def create_docs_to_embedd(movies: list[Movie], config: config.RetrievalExpsConfig) -> list[Document]:
-    """
-    Convierte una lista de objetos `Movie` a una lista the objetos `Document`(usada por Langchain).
-    En esta función se decide que parte de los datos será usado como embeddings y que parte como metadata.
-    """
+  
     movies_as_docs = []
     for movie in movies:
         content = config.text_to_embed_fn(movie)
@@ -24,8 +21,20 @@ def create_docs_to_embedd(movies: list[Movie], config: config.RetrievalExpsConfi
 ## Posibles funciones para usar como `text_to_embed_fn` en `RetrievalExpsConfig` ##
 
 #funcion que se llama en config.py
-def get_synopsys_txt(movie: Movie) -> str:
-    return movie.synopsis
 
-def getMovieData(movie: Movie) -> str:
-    return f"{movie.synopsis}; {' '.join(movie.genre_tags)}"
+def getMovieData(movie: dict, embedding_model=None) -> dict:
+   
+    textual_data = f"{movie['synopsis']}; {' '.join(movie['genre_tags'].split(';'))}"
+    
+    movie_embedding = None
+    if embedding_model:
+        movie_embedding = embedding_model.predict([textual_data])[0] 
+    
+    return {
+        "movie_id": movie["movie_id"],
+        "title": movie["title_es"],
+        "year": movie["year"],
+        "genres": movie["genre_tags"].split(';'),
+        "synopsis": movie["synopsis"],
+        "embedding": movie_embedding
+    }
