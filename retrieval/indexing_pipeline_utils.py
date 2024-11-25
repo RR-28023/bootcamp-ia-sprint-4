@@ -27,4 +27,13 @@ def create_docs_to_embedd(movies: list[Movie], config: config.RetrievalExpsConfi
 def get_synopsys_txt(movie: Movie) -> str:
     return movie.synopsis
 
-# def ...
+# Vamos a concatenar diferentes atributos para una mejor busqueda.
+
+def get_detailed_description(movie: Movie) -> str:
+    return f"Título: {movie.title_es}. Género: {movie.genre_tags}. Director: {movie.director_top_5}. Sinopsis: {movie.synopsis}"
+
+
+#por ultimo utilizaremos un enfoque más minimalista.
+
+def get_genre_and_title(movie: Movie) -> str:
+    return f"Título: {movie.title_es}. Género: {movie.genre_tags}"
