@@ -27,4 +27,9 @@ def create_docs_to_embedd(movies: list[Movie], config: config.RetrievalExpsConfi
 def get_synopsys_txt(movie: Movie) -> str:
     return movie.synopsis
 
-# def ...
+def get_movie_txt(movie: Movie) -> str:
+    content_type_str = "serie" if movie.tv_show_flag else "película"
+    genre_str = movie.genre_tags.replace(";", ", ").replace("/", " ").replace("&", "y")
+    synopsis_str = movie.synopsis.replace("(FILMAFFINITY)", "")
+
+    return f"Es una {content_type_str} de género {genre_str}, su país de origen es {movie.country}. Su argumento es el siguiente {synopsis_str}"

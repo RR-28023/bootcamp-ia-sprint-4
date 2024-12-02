@@ -1,5 +1,7 @@
 # Ejercicio práctico sesión 2 - Desarrollo del módulo de *retrieval* de un sistema RAG
 
+## Héctor Hugo Coronado Huamán
+
 - [Ejercicio práctico sesión 2 - Desarrollo del módulo de *retrieval* de un sistema RAG](#ejercicio-práctico-sesión-2---desarrollo-del-módulo-de-retrieval-de-un-sistema-rag)
   - [Introducción](#introducción)
   - [Datos](#datos)
