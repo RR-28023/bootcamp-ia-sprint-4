@@ -45,12 +45,15 @@ class FilmRecDbConn:
 def get_movies_data() -> list[Movie]:
     """
     Returns all movies data from the movie_attributes table.
-    Aplicamos unos filtros para reducir el número de películas y que sea más manejable para el ejercicio.
     """
     json_path = "retrieval/data/movies_data.json"
-    with open(json_path, "r") as f:
+    with open(json_path, "r", encoding="utf-8") as f:
         movies_data = json.load(f)
-
+    
+    # Depuración: Imprimir los datos cargados
+    for movie in movies_data[:5]:  # Muestra los primeros 5 para no saturar la salida
+        print(f"Cargado: {movie}")
+    
     movies = [
         Movie(
             movie_id=movie["movie_id"],
@@ -70,6 +73,7 @@ def get_movies_data() -> list[Movie]:
         for movie in movies_data
     ]
     return movies
+
 
 
 def get_movies_data_from_db(conn: FilmRecDbConn = None) -> list[Movie]:
