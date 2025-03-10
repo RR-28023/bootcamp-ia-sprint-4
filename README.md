@@ -1,6 +1,6 @@
-# Ejercicio práctico sesión 2 - Desarrollo del módulo de *retrieval* de un sistema RAG
+# Ejercicio práctico sesión 2 - Desarrollo del módulo de *retrieval* de un sistema RAG - Alejandro Pérez Candela
 
-- [Ejercicio práctico sesión 2 - Desarrollo del módulo de *retrieval* de un sistema RAG](#ejercicio-práctico-sesión-2---desarrollo-del-módulo-de-retrieval-de-un-sistema-rag)
+- [Ejercicio práctico sesión 2 - Desarrollo del módulo de *retrieval* de un sistema RAG - Alejandro Pérez Candela](#ejercicio-práctico-sesión-2---desarrollo-del-módulo-de-retrieval-de-un-sistema-rag---alejandro-pérez-candela)
   - [Introducción](#introducción)
   - [Datos](#datos)
   - [Evaluación del sistema](#evaluación-del-sistema)
