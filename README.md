@@ -212,9 +212,9 @@ menú de inicio una vez instalado Anaconda).
 
 ### Descarga los datos necesarios
 
-1. Descarga la información de las películas de [este link](https://grupovass-my.sharepoint.com/:u:/g/personal/gabriel_munozr_intelygenz_com/ESzzhc5BUZ9KpAZ5F28jiGYB9l-NzIfGIXNfkGdPjXFwag?e=YqHfKv) y guárdalo en `path/en/tu/equipo/bootcamp-ia-sprint-4/retrieval/data/movies_data.json` 
+1. Descarga la información de las películas de [este link](https://grupovass-my.sharepoint.com/:u:/g/personal/gabriel_munozr_vasscompany_com/ESzzhc5BUZ9KpAZ5F28jiGYB9l-NzIfGIXNfkGdPjXFwag?e=BRQY5t) y guárdalo en `path/en/tu/equipo/bootcamp-ia-sprint-4/retrieval/data/movies_data.json` 
 
-2. Descarga el dataset de evaluación de [este link](https://grupovass-my.sharepoint.com/:u:/g/personal/gabriel_munozr_intelygenz_com/EV0xH27mzcZLgA8Hnr9wdGoBJxZ9eBzELasvfkox5Q9qDQ?e=UfZjTT) y guárdalo en `path/en/tu/equipo/bootcamp-ia-sprint-4/retrieval/data/eval_queries.json`
+2. Descarga el dataset de evaluación de [este link](https://grupovass-my.sharepoint.com/:u:/g/personal/gabriel_munozr_vasscompany_com/EV0xH27mzcZLgA8Hnr9wdGoBJxZ9eBzELasvfkox5Q9qDQ?e=qwaWr6) y guárdalo en `path/en/tu/equipo/bootcamp-ia-sprint-4/retrieval/data/eval_queries.json`
 
 
 ### Lanzar el servidor de MLFlow
