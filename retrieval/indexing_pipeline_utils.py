@@ -28,3 +28,25 @@ def get_synopsys_txt(movie: Movie) -> str:
     return movie.synopsis
 
 # def ...
+
+def get_genre_director_and_synopsis(movie: Movie) -> str: # genero, director y sipnosis
+    genres = movie.genre_tags.replace(";", ", ") if movie.genre_tags else "Unknown genres"
+    director = movie.director_top_5 or "Unknown director"
+    synopsis = movie.synopsis or "No synopsis available."
+    return f"Genres: {genres}. Directed by {director}. Synopsis: {synopsis}"
+
+def get_full_metadata(movie: Movie) -> str: # descripcion completa
+    title = movie.title_es or "Unknown Title"
+    original_title = movie.title_original or "Unknown Original Title"
+    year = movie.year or "Unknown Year"
+    genres = movie.genre_tags.replace(";", ", ") if movie.genre_tags else "Unknown genres"
+    director = movie.director_top_5 or "Unknown director"
+    synopsis = movie.synopsis or "No synopsis available."
+    return (f"Title: {title} ({original_title}). Year: {year}. Genres: {genres}. "
+            f"Directed by {director}. Synopsis: {synopsis}")
+
+
+def get_synopsis_and_genres(movie: Movie) -> str: #Combina sipnosis y genero y utiliza los valores predeterminados
+    synopsis = movie.synopsis or "No synopsis available."
+    genres = movie.genre_tags.replace(";", ", ") if movie.genre_tags else "Unknown genres"
+    return f"Synopsis: {synopsis} Genres: {genres}"
