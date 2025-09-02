@@ -1,3 +1,11 @@
+# FICHERO PARA INTERACTUAR CON EL CODIGO
+#COMANDOS PARA ACTIVAR
+# conda env create -f env_windows.yml
+# conda activate movies
+# mlflow server --host 127.0.0.1 --port 8080
+# python retrieval/main.py
+
+
 # %%
 import sys
 import os
@@ -29,7 +37,7 @@ eval_queries = load_eval_queries()
 
 #%%
 # Veamos qué tal funciona
-idx_ejemplo = 204 #  16: 'JFK: Caso revisado'; 180: 'Un verano en Ibiza'; 233: 'La muerte de Stalin', 204: 'Anatomía de una caída',
+idx_ejemplo = 16 #  16: 'JFK: Caso revisado'; 180: 'Un verano en Ibiza'; 233: 'La muerte de Stalin', 204: 'Anatomía de una caída',
 query = eval_queries[idx_ejemplo]
 query, expected_movie_id = query["query"], query["movie_id"]
 retrieved_docs, t_elapsed = retrieval_pipeline(query, index, exp_config, logger)
@@ -43,4 +51,3 @@ print(f"\n--- Retrieved movies ---")
 for i, doc in enumerate(retrieved_docs):
     print(f"MOVIE {i+1}")
     print("\n".join([f" · {k}: {v}" for k,v in doc.metadata.items()]))
-
