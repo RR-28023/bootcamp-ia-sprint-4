@@ -118,7 +118,7 @@ if __name__ == "__main__":
 
     mlflow.set_experiment("Embeddings Retrieval")
 
-    with mlflow.start_run():
+    with mlflow.start_run(run_name="Shallan"):
 
         # Cargamos la configuración del experimento y logeamos a mlflow
         exp_config = RetrievalExpsConfig()
