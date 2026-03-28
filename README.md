@@ -1,3 +1,6 @@
+Uusario: lmpv100@gmail.com
+Nombre y apellido: Luis Mario Peña Viloria
+
 # Ejercicio práctico sesión 2 - Desarrollo del módulo de *retrieval* de un sistema RAG
 
 **Lecturer**: Ramón Rotaeche

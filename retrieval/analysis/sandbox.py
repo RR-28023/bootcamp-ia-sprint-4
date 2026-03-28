@@ -44,3 +44,5 @@ for i, doc in enumerate(retrieved_docs):
     print(f"MOVIE {i+1}")
     print("\n".join([f" · {k}: {v}" for k,v in doc.metadata.items()]))
 
+
+# %%
